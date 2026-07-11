@@ -26,6 +26,10 @@ body.home #page {
     background-color: var(--bollu-black) !important;
 }
 
+body.home #content .ast-container {
+    display: block !important;
+}
+
 body.home h1, 
 body.home h2, 
 body.home h3, 
