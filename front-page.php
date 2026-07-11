@@ -12,16 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 get_header();
 
-// 1. Hero Banner Section
-get_template_part( 'template-parts/home/hero' );
-
-// 2. 6 Categories Grid Section
+// 1. 6 Categories Grid Section
 get_template_part( 'template-parts/home/categories' );
 
-// 3. Split Gallery Showcase Section
-get_template_part( 'template-parts/home/showcase' );
-
-// 4. 10 Products Grid Section
+// 2. 10 Products Grid Section
 get_template_part( 'template-parts/home/products' );
 
 get_footer();
