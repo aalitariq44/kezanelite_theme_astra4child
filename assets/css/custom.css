@@ -18,7 +18,7 @@
 body.home {
     background-color: var(--bollu-black) !important;
     color: var(--bollu-white) !important;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Tajawal', sans-serif;
     overflow-x: hidden;
 }
 
@@ -37,7 +37,7 @@ body.home h4,
 body.home h5, 
 body.home h6 {
     color: var(--bollu-white) !important;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-weight: 500;
     letter-spacing: -0.02em;
 }
@@ -55,7 +55,7 @@ body.home .main-header-bar {
 body.home .main-header-menu a,
 body.home .ast-menu-toggle {
     color: var(--bollu-white) !important;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: 0.1em;
@@ -99,7 +99,7 @@ body.home .main-header-menu a:hover {
 }
 
 .bollu-hero-tagline {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     color: var(--bollu-gold);
     text-transform: uppercase;
     font-size: 14px;
@@ -131,7 +131,7 @@ body.home .main-header-menu a:hover {
     background-color: var(--bollu-gold);
     color: var(--bollu-black) !important;
     padding: 14px 36px;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-weight: 600;
     text-transform: uppercase;
     font-size: 13px;
@@ -244,7 +244,7 @@ body.home .main-header-menu a:hover {
 }
 
 .category-card-link {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     color: var(--bollu-gold);
     text-transform: uppercase;
     font-size: 11px;
@@ -338,7 +338,7 @@ body.home .main-header-menu a:hover {
 }
 
 .product-card-category {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     color: var(--bollu-gold);
     font-size: 10px;
     text-transform: uppercase;
@@ -365,7 +365,7 @@ body.home .main-header-menu a:hover {
 }
 
 .product-card-price {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 16px;
     margin-top: auto;
     margin-bottom: 20px;
@@ -393,7 +393,7 @@ body.home .main-header-menu a:hover {
     color: var(--bollu-gold) !important;
     padding: 12px 0;
     text-transform: uppercase;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.15em;
@@ -510,7 +510,7 @@ body.home .site-footer a:hover {
 
 .bollu-top-certificate-banner {
     width: 100%;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', 'Tajawal', sans-serif;
 }
 
 .bollu-top-bar-dark {
@@ -599,7 +599,7 @@ body.home .site-footer a:hover {
 
 .gold-b {
     color: var(--bollu-gold);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 28px;
     font-weight: 300;
 }
@@ -610,7 +610,7 @@ body.home .site-footer a:hover {
 }
 
 .cert-subtitle {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 9px;
     color: #8e8e93;
     letter-spacing: 0.15em;
@@ -618,7 +618,7 @@ body.home .site-footer a:hover {
 }
 
 .cert-title {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 21px;
     font-weight: 500;
     color: #1c1c1e !important;
@@ -627,7 +627,7 @@ body.home .site-footer a:hover {
 }
 
 .cert-tagline {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 9px;
     color: var(--bollu-gold);
     letter-spacing: 0.25em;
@@ -676,7 +676,7 @@ body.home .site-footer a:hover {
 }
 
 .cert-feature-text h4 {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 12px;
     font-weight: 600;
     color: #1c1c1e !important; /* Force readable charcoal black color */
@@ -737,7 +737,7 @@ body.home .site-footer a:hover {
 }
 
 .custom-logo-text {
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 20px;
     font-weight: 500;
     color: var(--bollu-white) !important;
@@ -802,7 +802,7 @@ body.home .site-footer a:hover {
 
 .bollu-sub-menu-list li a {
     color: var(--bollu-light-gray);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 11px;
     font-weight: 500;
     text-transform: uppercase;
@@ -821,7 +821,7 @@ body.home .site-footer a:hover {
     align-items: center;
     gap: 15px;
     color: var(--bollu-gray);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 11px;
     letter-spacing: 0.05em;
 }
@@ -1000,7 +1000,7 @@ body.home .site-footer a:hover {
 
 .bollu-drawer-menu-list li a {
     color: var(--bollu-white);
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
     font-size: 16px;
     font-weight: 400;
     text-transform: uppercase;
@@ -1032,3 +1032,4 @@ body.home {
         padding: 50px 30px;
     }
 }
+
