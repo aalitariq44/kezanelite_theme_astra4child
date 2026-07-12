@@ -8,10 +8,6 @@
 ?>
 
 <section id="products" class="bollu-section alt-bg">
-    <div class="section-header">
-        <span class="section-subtitle">متجر التحف الفنية</span>
-        <h2 class="section-title">التشكيلة الحالية</h2>
-    </div>
 
     <div class="products-grid">
         <?php

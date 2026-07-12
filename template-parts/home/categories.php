@@ -8,10 +8,6 @@
 ?>
 
 <section id="collections" class="bollu-section">
-    <div class="section-header">
-        <span class="section-subtitle">المجموعات الفنية</span>
-        <h2 class="section-title">أقسام المعرض</h2>
-    </div>
 
     <div class="categories-grid">
         <?php

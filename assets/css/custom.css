@@ -155,7 +155,7 @@ body .main-header-menu a:hover {
 
 /* Sections General */
 .bollu-section {
-    padding: 100px 0;
+    padding: 40px 0 80px 0;
     background-color: var(--bollu-white) !important;
 }
 
@@ -849,7 +849,7 @@ body .site-footer a:hover {
 .bollu-main-header {
     background-color: var(--bollu-white) !important;
     padding: 18px 40px;
-    border-bottom: 1px solid #eaeaea !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06) !important;
 }
 
 .bollu-main-header-container {
@@ -2040,6 +2040,326 @@ body.bollu-search-open {
 
 .single-product .comment-form input[type="submit"]:hover {
     background-color: var(--bollu-gold-hover) !important;
+}
+
+/* ==========================================================================
+   Custom Luxury Footer (Bollu.ru Style)
+   ========================================================================== */
+.custom-bollu-footer {
+    background-color: #2c2c2c;
+    color: var(--bollu-white);
+    font-family: 'Inter', 'Tajawal', sans-serif;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    direction: rtl !important;
+}
+
+.footer-top-row {
+    padding: 80px 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-top-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.footer-brand-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 35px;
+    text-align: right;
+}
+
+.footer-links-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.footer-links-list li {
+    margin: 0;
+}
+
+.footer-links-list a {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-decoration: none !important;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease;
+}
+
+.footer-links-list a:hover {
+    color: var(--bollu-gold) !important;
+}
+
+.footer-large-headline {
+    font-family: 'Outfit', 'Tajawal', sans-serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--bollu-gold) !important;
+    margin: 0;
+    letter-spacing: 0.02em;
+}
+
+.footer-contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    direction: ltr !important;
+    text-align: right !important;
+}
+
+.footer-contact-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    text-decoration: none !important;
+    font-family: 'Outfit', 'Tajawal', sans-serif;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.footer-contact-link:hover {
+    color: var(--bollu-gold) !important;
+}
+
+/* Middle Row: Certificate */
+.footer-cert-row {
+    padding: 60px 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-cert-row .bollu-cert-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 0px;
+    direction: ltr !important; /* Matches LTR order of the logo on left, descriptions on right */
+}
+
+.footer-cert-row .bollu-cert-logo-section {
+    flex: 1 1 25%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    padding-right: 40px;
+}
+
+.footer-cert-row .cert-title {
+    color: var(--bollu-white) !important;
+    margin: 4px 0 2px 0 !important;
+}
+
+.footer-cert-row .cert-subtitle {
+    color: rgba(255, 255, 255, 0.4) !important;
+}
+
+.footer-cert-row .bollu-cert-features-section {
+    flex: 3 1 75%;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.footer-cert-row .cert-feature-col {
+    flex: 1 1 30%;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 0 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    text-align: left;
+}
+
+.footer-cert-row .cert-feature-col:last-child {
+    border-right: none;
+    padding-right: 0;
+}
+
+.footer-cert-row .cert-feature-text h4 {
+    color: var(--bollu-white) !important;
+}
+
+.footer-cert-row .cert-feature-text p {
+    color: rgba(255, 255, 255, 0.5) !important;
+    font-size: 11px;
+    line-height: 1.6;
+}
+
+.footer-cert-row .cert-feature-icon-wrap {
+    background-color: rgba(186, 161, 112, 0.1) !important;
+}
+
+/* Bottom Row: Copyright & Disclaimers */
+.footer-bottom-row {
+    background-color: #212121;
+    padding: 50px 40px;
+}
+
+.footer-bottom-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.footer-copyright-block {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 600px;
+    align-items: flex-start;
+    text-align: right;
+}
+
+.footer-copyright-text {
+    font-family: 'Outfit', 'Tajawal', sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4) !important;
+    margin: 0 !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.footer-disclaimer-text {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.3) !important;
+    margin: 0 !important;
+    line-height: 1.6;
+}
+
+.footer-privacy-link {
+    font-family: 'Outfit', 'Tajawal', sans-serif;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4) !important;
+    text-decoration: underline !important;
+    transition: color 0.3s ease;
+    margin: 0;
+    display: inline-block;
+}
+
+.footer-privacy-link:hover {
+    color: var(--bollu-gold) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .footer-cert-row .bollu-cert-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+    }
+    
+    .footer-cert-row .bollu-cert-logo-section {
+        border-right: none;
+        padding-right: 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        padding-bottom: 20px;
+    }
+    
+    .footer-cert-row .bollu-cert-features-section {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+    }
+    
+    .footer-cert-row .cert-feature-col {
+        border-right: none;
+        padding: 0;
+        width: 100%;
+    }
+}
+
+/* Pre-Footer Contact and Showroom Styles */
+.bollu-pre-footer {
+    background-color: #f6f6f6 !important;
+    padding: 60px 40px 40px 40px !important;
+    font-family: 'Inter', 'Tajawal', sans-serif;
+    color: #686868;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    direction: rtl !important;
+}
+
+.pre-footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.pre-footer-col {
+    flex: 1 1 300px;
+    text-align: right !important;
+}
+
+.pre-footer-col h3 {
+    font-family: 'Outfit', 'Tajawal', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000000 !important;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.pre-footer-col p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0 0 10px 0;
+}
+
+.pre-footer-col .description {
+    color: #686868 !important;
+}
+
+.pre-footer-col a {
+    color: #000000 !important;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.pre-footer-col a:hover {
+    color: var(--bollu-gold) !important;
+}
+
+.pre-footer-col .sep {
+    margin: 0 10px;
+    color: #ccc;
+}
+
+.pre-footer-col .hours {
+    color: #888;
+}
+
+.pre-footer-col .contact-info {
+    direction: ltr !important;
+    text-align: right !important;
+}
+
+@media (max-width: 768px) {
+    .pre-footer-container {
+        flex-direction: column;
+        gap: 30px;
+    }
 }
 
 
