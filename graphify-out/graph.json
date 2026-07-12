@@ -1,0 +1,571 @@
+{
+  "directed": false,
+  "multigraph": false,
+  "graph": {},
+  "nodes": [
+    {
+      "label": "custom.js",
+      "file_type": "code",
+      "source_file": "assets/js/custom.js",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "assets_js_custom",
+      "community": 0,
+      "norm_label": "custom.js"
+    },
+    {
+      "label": "checkScroll()",
+      "file_type": "code",
+      "source_file": "assets/js/custom.js",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "assets_js_custom_checkscroll",
+      "community": 0,
+      "norm_label": "checkscroll()"
+    },
+    {
+      "label": "closeSidePanel()",
+      "file_type": "code",
+      "source_file": "assets/js/custom.js",
+      "source_location": "L72",
+      "_origin": "ast",
+      "id": "assets_js_custom_closesidepanel",
+      "community": 0,
+      "norm_label": "closesidepanel()"
+    },
+    {
+      "label": "closeSearchOverlay()",
+      "file_type": "code",
+      "source_file": "assets/js/custom.js",
+      "source_location": "L155",
+      "_origin": "ast",
+      "id": "assets_js_custom_closesearchoverlay",
+      "community": 0,
+      "norm_label": "closesearchoverlay()"
+    },
+    {
+      "label": "footer.php",
+      "file_type": "code",
+      "source_file": "footer.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "footer",
+      "community": 10,
+      "norm_label": "footer.php"
+    },
+    {
+      "label": "front-page.php",
+      "file_type": "code",
+      "source_file": "front-page.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "front_page",
+      "community": 11,
+      "norm_label": "front-page.php"
+    },
+    {
+      "label": "functions.php",
+      "file_type": "code",
+      "source_file": "functions.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "functions",
+      "community": 12,
+      "norm_label": "functions.php"
+    },
+    {
+      "label": "header.php",
+      "file_type": "code",
+      "source_file": "header.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "header",
+      "community": 13,
+      "norm_label": "header.php"
+    },
+    {
+      "label": "footer-functions.php",
+      "file_type": "code",
+      "source_file": "inc/footer-functions.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "inc_footer_functions",
+      "community": 7,
+      "norm_label": "footer-functions.php"
+    },
+    {
+      "label": "astra_child_custom_footer_copyright_text()",
+      "file_type": "code",
+      "source_file": "inc/footer-functions.php",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "inc_footer_functions_astra_child_custom_footer_copyright_text",
+      "community": 7,
+      "norm_label": "astra_child_custom_footer_copyright_text()"
+    },
+    {
+      "label": "header-functions.php",
+      "file_type": "code",
+      "source_file": "inc/header-functions.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "inc_header_functions",
+      "community": 4,
+      "norm_label": "header-functions.php"
+    },
+    {
+      "label": "astra_child_custom_logo_override()",
+      "file_type": "code",
+      "source_file": "inc/header-functions.php",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "inc_header_functions_astra_child_custom_logo_override",
+      "community": 4,
+      "norm_label": "astra_child_custom_logo_override()"
+    },
+    {
+      "label": "astra_child_certificate_banner()",
+      "file_type": "code",
+      "source_file": "inc/header-functions.php",
+      "source_location": "L45",
+      "_origin": "ast",
+      "id": "inc_header_functions_astra_child_certificate_banner",
+      "community": 4,
+      "norm_label": "astra_child_certificate_banner()"
+    },
+    {
+      "label": "setup.php",
+      "file_type": "code",
+      "source_file": "inc/setup.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "inc_setup",
+      "community": 8,
+      "norm_label": "setup.php"
+    },
+    {
+      "label": "astra_child_enqueue_styles()",
+      "file_type": "code",
+      "source_file": "inc/setup.php",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "inc_setup_astra_child_enqueue_styles",
+      "community": 8,
+      "norm_label": "astra_child_enqueue_styles()"
+    },
+    {
+      "label": "woocommerce.php",
+      "file_type": "code",
+      "source_file": "inc/woocommerce.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "inc_woocommerce",
+      "community": 9,
+      "norm_label": "woocommerce.php"
+    },
+    {
+      "label": "get_bollu_categories()",
+      "file_type": "code",
+      "source_file": "inc/woocommerce.php",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "inc_woocommerce_get_bollu_categories",
+      "community": 9,
+      "norm_label": "get_bollu_categories()"
+    },
+    {
+      "label": "certificate-banner.php",
+      "file_type": "code",
+      "source_file": "template-parts/header/certificate-banner.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "template_parts_header_certificate_banner",
+      "community": 14,
+      "norm_label": "certificate-banner.php"
+    },
+    {
+      "label": "main-header.php",
+      "file_type": "code",
+      "source_file": "template-parts/header/main-header.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "template_parts_header_main_header",
+      "community": 15,
+      "norm_label": "main-header.php"
+    },
+    {
+      "label": "categories.php",
+      "file_type": "code",
+      "source_file": "template-parts/home/categories.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "template_parts_home_categories",
+      "community": 16,
+      "norm_label": "categories.php"
+    },
+    {
+      "label": "hero.php",
+      "file_type": "code",
+      "source_file": "template-parts/home/hero.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "template_parts_home_hero",
+      "community": 17,
+      "norm_label": "hero.php"
+    },
+    {
+      "label": "products.php",
+      "file_type": "code",
+      "source_file": "template-parts/home/products.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "template_parts_home_products",
+      "community": 18,
+      "norm_label": "products.php"
+    },
+    {
+      "label": "showcase.php",
+      "file_type": "code",
+      "source_file": "template-parts/home/showcase.php",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "template_parts_home_showcase",
+      "community": 19,
+      "norm_label": "showcase.php"
+    },
+    {
+      "label": "graphify.md",
+      "file_type": "document",
+      "source_file": ".agents/rules/graphify.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "agents_rules_graphify",
+      "community": 5,
+      "norm_label": "graphify.md"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": ".agents/rules/graphify.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "agents_rules_graphify_graphify",
+      "community": 5,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "graphify.md",
+      "file_type": "document",
+      "source_file": ".agents/workflows/graphify.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "agents_workflows_graphify",
+      "community": 6,
+      "norm_label": "graphify.md"
+    },
+    {
+      "label": "Workflow: graphify",
+      "file_type": "document",
+      "source_file": ".agents/workflows/graphify.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "agents_workflows_graphify_workflow_graphify",
+      "community": 6,
+      "norm_label": "workflow: graphify"
+    },
+    {
+      "label": "HEADER_BORDER_GUIDE.md",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "header_border_guide",
+      "community": 1,
+      "norm_label": "header_border_guide.md"
+    },
+    {
+      "label": "\u062f\u0644\u064a\u0644 \u062a\u0648\u062b\u064a\u0642 \u062e\u0637 \u062d\u062f\u0648\u062f \u0627\u0644\u0647\u064a\u062f\u0631 \u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647 (Header Border and Style Guide)",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide",
+      "community": 1,
+      "norm_label": "\u062f\u0644\u064a\u0644 \u062a\u0648\u062b\u064a\u0642 \u062e\u0637 \u062d\u062f\u0648\u062f \u0627\u0644\u0647\u064a\u062f\u0631 \u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647 (header border and style guide)"
+    },
+    {
+      "label": "1. \u0633\u0644\u0648\u0643 \u0627\u0644\u062e\u0637 \u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0627\u0644\u0623\u0635\u0644\u064a\u0629 (Original Behavior & Issue)",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L9",
+      "_origin": "ast",
+      "id": "header_border_guide_1_\u0633\u0644\u0648\u0643_\u0627\u0644\u062e\u0637_\u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629_\u0627\u0644\u0623\u0635\u0644\u064a\u0629_original_behavior_issue",
+      "community": 2,
+      "norm_label": "1. \u0633\u0644\u0648\u0643 \u0627\u0644\u062e\u0637 \u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0627\u0644\u0627\u0635\u0644\u064a\u0629 (original behavior & issue)"
+    },
+    {
+      "label": "\u0643\u064a\u0641 \u0643\u0627\u0646 \u064a\u0639\u0645\u0644 \u0627\u0644\u062e\u0637\u061f",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L11",
+      "_origin": "ast",
+      "id": "header_border_guide_\u0643\u064a\u0641_\u0643\u0627\u0646_\u064a\u0639\u0645\u0644_\u0627\u0644\u062e\u0637",
+      "community": 2,
+      "norm_label": "\u0643\u064a\u0641 \u0643\u0627\u0646 \u064a\u0639\u0645\u0644 \u0627\u0644\u062e\u0637\u061f"
+    },
+    {
+      "label": "\u0627\u0644\u0645\u0634\u0643\u0644\u0629:",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "header_border_guide_\u0627\u0644\u0645\u0634\u0643\u0644\u0629",
+      "community": 2,
+      "norm_label": "\u0627\u0644\u0645\u0634\u0643\u0644\u0629:"
+    },
+    {
+      "label": "2. \u0627\u0644\u062d\u0644 \u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629 (Implemented Solution)",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L23",
+      "_origin": "ast",
+      "id": "header_border_guide_2_\u0627\u0644\u062d\u0644_\u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629_implemented_solution",
+      "community": 3,
+      "norm_label": "2. \u0627\u0644\u062d\u0644 \u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629 (implemented solution)"
+    },
+    {
+      "label": "\u0623\u0648\u0644\u0627\u064b: \u0625\u0644\u063a\u0627\u0621 \u0643\u0627\u0645\u0644 \u0627\u0644\u062d\u062f\u0648\u062f \u0648\u0627\u0644\u0638\u0644\u0627\u0644 \u0627\u0644\u0645\u0648\u0631\u0648\u062b\u0629 (CSS Specifity Override)",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L27",
+      "_origin": "ast",
+      "id": "header_border_guide_\u0623\u0648\u0644\u0627_\u0625\u0644\u063a\u0627\u0621_\u0643\u0627\u0645\u0644_\u0627\u0644\u062d\u062f\u0648\u062f_\u0648\u0627\u0644\u0638\u0644\u0627\u0644_\u0627\u0644\u0645\u0648\u0631\u0648\u062b\u0629_css_specifity_override",
+      "community": 3,
+      "norm_label": "\u0627\u0648\u0644\u0627: \u0627\u0644\u063a\u0627\u0621 \u0643\u0627\u0645\u0644 \u0627\u0644\u062d\u062f\u0648\u062f \u0648\u0627\u0644\u0638\u0644\u0627\u0644 \u0627\u0644\u0645\u0648\u0631\u0648\u062b\u0629 (css specifity override)"
+    },
+    {
+      "label": "\u062b\u0627\u0646\u064a\u0627\u064b: \u062a\u062b\u0628\u064a\u062a \u0627\u0644\u062d\u062f\u0648\u062f \u0648\u0627\u0644\u0638\u0644\u0627\u0644 \u0627\u0644\u0646\u0627\u0639\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0639\u0646\u0627\u0635\u0631 \u0627\u0644\u062f\u0627\u062e\u0644\u064a\u0629 \u0627\u0644\u0645\u062e\u0635\u0635\u0629",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L80",
+      "_origin": "ast",
+      "id": "header_border_guide_\u062b\u0627\u0646\u064a\u0627_\u062a\u062b\u0628\u064a\u062a_\u0627\u0644\u062d\u062f\u0648\u062f_\u0648\u0627\u0644\u0638\u0644\u0627\u0644_\u0627\u0644\u0646\u0627\u0639\u0645\u0629_\u0639\u0644\u0649_\u0627\u0644\u0639\u0646\u0627\u0635\u0631_\u0627\u0644\u062f\u0627\u062e\u0644\u064a\u0629_\u0627\u0644\u0645\u062e\u0635\u0635\u0629",
+      "community": 3,
+      "norm_label": "\u062b\u0627\u0646\u064a\u0627: \u062a\u062b\u0628\u064a\u062a \u0627\u0644\u062d\u062f\u0648\u062f \u0648\u0627\u0644\u0638\u0644\u0627\u0644 \u0627\u0644\u0646\u0627\u0639\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0639\u0646\u0627\u0635\u0631 \u0627\u0644\u062f\u0627\u062e\u0644\u064a\u0629 \u0627\u0644\u0645\u062e\u0635\u0635\u0629"
+    },
+    {
+      "label": "3. \u0627\u0644\u0633\u0628\u0628 \u0627\u0644\u062c\u0630\u0631\u064a \u0627\u0644\u062d\u0642\u064a\u0642\u064a (Root Cause \u2014 Critical!)",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L105",
+      "_origin": "ast",
+      "id": "header_border_guide_3_\u0627\u0644\u0633\u0628\u0628_\u0627\u0644\u062c\u0630\u0631\u064a_\u0627\u0644\u062d\u0642\u064a\u0642\u064a_root_cause_critical",
+      "community": 1,
+      "norm_label": "3. \u0627\u0644\u0633\u0628\u0628 \u0627\u0644\u062c\u0630\u0631\u064a \u0627\u0644\u062d\u0642\u064a\u0642\u064a (root cause \u2014 critical!)"
+    },
+    {
+      "label": "4. \u0625\u0631\u0634\u0627\u062f\u0627\u062a \u0644\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629 (Future Modifications Guide)",
+      "file_type": "document",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L124",
+      "_origin": "ast",
+      "id": "header_border_guide_4_\u0625\u0631\u0634\u0627\u062f\u0627\u062a_\u0644\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629_future_modifications_guide",
+      "community": 1,
+      "norm_label": "4. \u0627\u0631\u0634\u0627\u062f\u0627\u062a \u0644\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629 (future modifications guide)"
+    }
+  ],
+  "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/custom.js",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "assets_js_custom",
+      "target": "assets_js_custom_checkscroll",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/custom.js",
+      "source_location": "L155",
+      "weight": 1.0,
+      "source": "assets_js_custom",
+      "target": "assets_js_custom_closesearchoverlay",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "assets/js/custom.js",
+      "source_location": "L72",
+      "weight": 1.0,
+      "source": "assets_js_custom",
+      "target": "assets_js_custom_closesidepanel",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "inc/footer-functions.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "inc_footer_functions",
+      "target": "inc_footer_functions_astra_child_custom_footer_copyright_text",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "inc/header-functions.php",
+      "source_location": "L45",
+      "weight": 1.0,
+      "source": "inc_header_functions",
+      "target": "inc_header_functions_astra_child_certificate_banner",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "inc/header-functions.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "inc_header_functions",
+      "target": "inc_header_functions_astra_child_custom_logo_override",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "inc/setup.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "inc_setup",
+      "target": "inc_setup_astra_child_enqueue_styles",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "inc/woocommerce.php",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "inc_woocommerce",
+      "target": "inc_woocommerce_get_bollu_categories",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/graphify.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "agents_rules_graphify",
+      "target": "agents_rules_graphify_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/workflows/graphify.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "agents_workflows_graphify",
+      "target": "agents_workflows_graphify_workflow_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "header_border_guide",
+      "target": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L9",
+      "weight": 1.0,
+      "source": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide",
+      "target": "header_border_guide_1_\u0633\u0644\u0648\u0643_\u0627\u0644\u062e\u0637_\u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629_\u0627\u0644\u0623\u0635\u0644\u064a\u0629_original_behavior_issue",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L23",
+      "weight": 1.0,
+      "source": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide",
+      "target": "header_border_guide_2_\u0627\u0644\u062d\u0644_\u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629_implemented_solution",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L105",
+      "weight": 1.0,
+      "source": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide",
+      "target": "header_border_guide_3_\u0627\u0644\u0633\u0628\u0628_\u0627\u0644\u062c\u0630\u0631\u064a_\u0627\u0644\u062d\u0642\u064a\u0642\u064a_root_cause_critical",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L124",
+      "weight": 1.0,
+      "source": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide",
+      "target": "header_border_guide_4_\u0625\u0631\u0634\u0627\u062f\u0627\u062a_\u0644\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629_future_modifications_guide",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "source": "header_border_guide_1_\u0633\u0644\u0648\u0643_\u0627\u0644\u062e\u0637_\u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629_\u0627\u0644\u0623\u0635\u0644\u064a\u0629_original_behavior_issue",
+      "target": "header_border_guide_\u0627\u0644\u0645\u0634\u0643\u0644\u0629",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L11",
+      "weight": 1.0,
+      "source": "header_border_guide_1_\u0633\u0644\u0648\u0643_\u0627\u0644\u062e\u0637_\u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629_\u0627\u0644\u0623\u0635\u0644\u064a\u0629_original_behavior_issue",
+      "target": "header_border_guide_\u0643\u064a\u0641_\u0643\u0627\u0646_\u064a\u0639\u0645\u0644_\u0627\u0644\u062e\u0637",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L27",
+      "weight": 1.0,
+      "source": "header_border_guide_2_\u0627\u0644\u062d\u0644_\u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629_implemented_solution",
+      "target": "header_border_guide_\u0623\u0648\u0644\u0627_\u0625\u0644\u063a\u0627\u0621_\u0643\u0627\u0645\u0644_\u0627\u0644\u062d\u062f\u0648\u062f_\u0648\u0627\u0644\u0638\u0644\u0627\u0644_\u0627\u0644\u0645\u0648\u0631\u0648\u062b\u0629_css_specifity_override",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "HEADER_BORDER_GUIDE.md",
+      "source_location": "L80",
+      "weight": 1.0,
+      "source": "header_border_guide_2_\u0627\u0644\u062d\u0644_\u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629_implemented_solution",
+      "target": "header_border_guide_\u062b\u0627\u0646\u064a\u0627_\u062a\u062b\u0628\u064a\u062a_\u0627\u0644\u062d\u062f\u0648\u062f_\u0648\u0627\u0644\u0638\u0644\u0627\u0644_\u0627\u0644\u0646\u0627\u0639\u0645\u0629_\u0639\u0644\u0649_\u0627\u0644\u0639\u0646\u0627\u0635\u0631_\u0627\u0644\u062f\u0627\u062e\u0644\u064a\u0629_\u0627\u0644\u0645\u062e\u0635\u0635\u0629",
+      "confidence_score": 1.0
+    }
+  ],
+  "hyperedges": [],
+  "built_at_commit": "b81776f919dedfe287129eb53a73f466ce9ce673"
+}

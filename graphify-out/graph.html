@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>graphify - graphify-out\graph.html</title>
+<script src="https://unpkg.com/vis-network@9.1.6/standalone/umd/vis-network.min.js"
+        integrity="sha384-Ux6phic9PEHJ38YtrijhkzyJ8yQlH8i/+buBR8s3mAZOJrP1gwyvAcIYl3GWtpX1"
+        crossorigin="anonymous"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f0f1a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; display: flex; height: 100vh; overflow: hidden; }
+  #graph { flex: 1; }
+  #sidebar { width: 280px; background: #1a1a2e; border-left: 1px solid #2a2a4e; display: flex; flex-direction: column; overflow: hidden; }
+  #search-wrap { padding: 12px; border-bottom: 1px solid #2a2a4e; }
+  #search { width: 100%; background: #0f0f1a; border: 1px solid #3a3a5e; color: #e0e0e0; padding: 7px 10px; border-radius: 6px; font-size: 13px; outline: none; }
+  #search:focus { border-color: #4E79A7; }
+  #search-results { max-height: 140px; overflow-y: auto; padding: 4px 12px; border-bottom: 1px solid #2a2a4e; display: none; }
+  .search-item { padding: 4px 6px; cursor: pointer; border-radius: 4px; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .search-item:hover { background: #2a2a4e; }
+  #info-panel { padding: 14px; border-bottom: 1px solid #2a2a4e; min-height: 140px; }
+  #info-panel h3 { font-size: 13px; color: #aaa; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  #info-content { font-size: 13px; color: #ccc; line-height: 1.6; }
+  #info-content .field { margin-bottom: 5px; }
+  #info-content .field b { color: #e0e0e0; }
+  #info-content .empty { color: #555; font-style: italic; }
+  .neighbor-link { display: block; padding: 2px 6px; margin: 2px 0; border-radius: 3px; cursor: pointer; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; border-left: 3px solid #333; }
+  .neighbor-link:hover { background: #2a2a4e; }
+  #neighbors-list { max-height: 160px; overflow-y: auto; margin-top: 4px; }
+  #legend-wrap { flex: 1; overflow-y: auto; padding: 12px; }
+  #legend-wrap h3 { font-size: 13px; color: #aaa; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .legend-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; cursor: pointer; border-radius: 4px; font-size: 12px; }
+  .legend-item:hover { background: #2a2a4e; padding-left: 4px; }
+  .legend-item.dimmed { opacity: 0.35; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .legend-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .legend-count { color: #666; font-size: 11px; }
+  #stats { padding: 10px 14px; border-top: 1px solid #2a2a4e; font-size: 11px; color: #555; }
+  #legend-controls { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; padding: 4px 0; }
+  #legend-controls label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-size: 12px; color: #aaa; user-select: none; }
+  #legend-controls label:hover { color: #e0e0e0; }
+  .legend-cb, #select-all-cb { appearance: none; -webkit-appearance: none; width: 14px; height: 14px; border: 1.5px solid #3a3a5e; border-radius: 3px; background: #0f0f1a; cursor: pointer; position: relative; flex-shrink: 0; }
+  .legend-cb:checked, #select-all-cb:checked { background: #4E79A7; border-color: #4E79A7; }
+  .legend-cb:checked::after, #select-all-cb:checked::after { content: ''; position: absolute; left: 3.5px; top: 1px; width: 4px; height: 7px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+  #select-all-cb:indeterminate { background: #4E79A7; border-color: #4E79A7; }
+  #select-all-cb:indeterminate::after { content: ''; position: absolute; left: 2px; top: 5px; width: 8px; height: 2px; background: #fff; border: none; transform: none; }
+</style>
+</head>
+<body>
+<div id="graph"></div>
+<div id="sidebar">
+  <div id="search-wrap">
+    <input id="search" type="text" placeholder="Search nodes..." autocomplete="off">
+    <div id="search-results"></div>
+  </div>
+  <div id="info-panel">
+    <h3>Node Info</h3>
+    <div id="info-content"><span class="empty">Click a node to inspect it</span></div>
+  </div>
+  <div id="legend-wrap">
+    <h3>Communities</h3>
+    <div id="legend-controls">
+      <label><input type="checkbox" id="select-all-cb" checked onchange="toggleAllCommunities(!this.checked)">Select All</label>
+    </div>
+    <div id="legend"></div>
+  </div>
+  <div id="stats">37 nodes &middot; 19 edges &middot; 20 communities</div>
+</div>
+<script>
+const RAW_NODES = [{"id": "assets_js_custom", "label": "custom.js", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 28.0, "font": {"size": 12, "color": "#ffffff"}, "title": "custom.js", "community": 0, "community_name": "custom.js", "source_file": "assets/js/custom.js", "file_type": "code", "degree": 3}, {"id": "assets_js_custom_checkscroll", "label": "checkScroll()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "checkScroll()", "community": 0, "community_name": "custom.js", "source_file": "assets/js/custom.js", "file_type": "code", "degree": 1}, {"id": "assets_js_custom_closesidepanel", "label": "closeSidePanel()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "closeSidePanel()", "community": 0, "community_name": "custom.js", "source_file": "assets/js/custom.js", "file_type": "code", "degree": 1}, {"id": "assets_js_custom_closesearchoverlay", "label": "closeSearchOverlay()", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "closeSearchOverlay()", "community": 0, "community_name": "custom.js", "source_file": "assets/js/custom.js", "file_type": "code", "degree": 1}, {"id": "footer", "label": "footer.php", "color": {"background": "#4E79A7", "border": "#4E79A7", "highlight": {"background": "#ffffff", "border": "#4E79A7"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "footer.php", "community": 10, "community_name": "footer.php", "source_file": "footer.php", "file_type": "code", "degree": 0}, {"id": "front_page", "label": "front-page.php", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "front-page.php", "community": 11, "community_name": "front-page.php", "source_file": "front-page.php", "file_type": "code", "degree": 0}, {"id": "functions", "label": "functions.php", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "functions.php", "community": 12, "community_name": "functions.php", "source_file": "functions.php", "file_type": "code", "degree": 0}, {"id": "header", "label": "header.php", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "header.php", "community": 13, "community_name": "header.php", "source_file": "header.php", "file_type": "code", "degree": 0}, {"id": "inc_footer_functions", "label": "footer-functions.php", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "footer-functions.php", "community": 7, "community_name": "footer-functions.php", "source_file": "inc/footer-functions.php", "file_type": "code", "degree": 1}, {"id": "inc_footer_functions_astra_child_custom_footer_copyright_text", "label": "astra_child_custom_footer_copyright_text()", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "astra_child_custom_footer_copyright_text()", "community": 7, "community_name": "footer-functions.php", "source_file": "inc/footer-functions.php", "file_type": "code", "degree": 1}, {"id": "inc_header_functions", "label": "header-functions.php", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 22.0, "font": {"size": 12, "color": "#ffffff"}, "title": "header-functions.php", "community": 4, "community_name": "header-functions.php", "source_file": "inc/header-functions.php", "file_type": "code", "degree": 2}, {"id": "inc_header_functions_astra_child_custom_logo_override", "label": "astra_child_custom_logo_override()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "astra_child_custom_logo_override()", "community": 4, "community_name": "header-functions.php", "source_file": "inc/header-functions.php", "file_type": "code", "degree": 1}, {"id": "inc_header_functions_astra_child_certificate_banner", "label": "astra_child_certificate_banner()", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "astra_child_certificate_banner()", "community": 4, "community_name": "header-functions.php", "source_file": "inc/header-functions.php", "file_type": "code", "degree": 1}, {"id": "inc_setup", "label": "setup.php", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "setup.php", "community": 8, "community_name": "setup.php", "source_file": "inc/setup.php", "file_type": "code", "degree": 1}, {"id": "inc_setup_astra_child_enqueue_styles", "label": "astra_child_enqueue_styles()", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "astra_child_enqueue_styles()", "community": 8, "community_name": "setup.php", "source_file": "inc/setup.php", "file_type": "code", "degree": 1}, {"id": "inc_woocommerce", "label": "woocommerce.php", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "woocommerce.php", "community": 9, "community_name": "woocommerce.php", "source_file": "inc/woocommerce.php", "file_type": "code", "degree": 1}, {"id": "inc_woocommerce_get_bollu_categories", "label": "get_bollu_categories()", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "get_bollu_categories()", "community": 9, "community_name": "woocommerce.php", "source_file": "inc/woocommerce.php", "file_type": "code", "degree": 1}, {"id": "template_parts_header_certificate_banner", "label": "certificate-banner.php", "color": {"background": "#59A14F", "border": "#59A14F", "highlight": {"background": "#ffffff", "border": "#59A14F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "certificate-banner.php", "community": 14, "community_name": "certificate-banner.php", "source_file": "template-parts/header/certificate-banner.php", "file_type": "code", "degree": 0}, {"id": "template_parts_header_main_header", "label": "main-header.php", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "main-header.php", "community": 15, "community_name": "main-header.php", "source_file": "template-parts/header/main-header.php", "file_type": "code", "degree": 0}, {"id": "template_parts_home_categories", "label": "categories.php", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "categories.php", "community": 16, "community_name": "categories.php", "source_file": "template-parts/home/categories.php", "file_type": "code", "degree": 0}, {"id": "template_parts_home_hero", "label": "hero.php", "color": {"background": "#FF9DA7", "border": "#FF9DA7", "highlight": {"background": "#ffffff", "border": "#FF9DA7"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "hero.php", "community": 17, "community_name": "hero.php", "source_file": "template-parts/home/hero.php", "file_type": "code", "degree": 0}, {"id": "template_parts_home_products", "label": "products.php", "color": {"background": "#9C755F", "border": "#9C755F", "highlight": {"background": "#ffffff", "border": "#9C755F"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "products.php", "community": 18, "community_name": "products.php", "source_file": "template-parts/home/products.php", "file_type": "code", "degree": 0}, {"id": "template_parts_home_showcase", "label": "showcase.php", "color": {"background": "#BAB0AC", "border": "#BAB0AC", "highlight": {"background": "#ffffff", "border": "#BAB0AC"}}, "size": 10.0, "font": {"size": 0, "color": "#ffffff"}, "title": "showcase.php", "community": 19, "community_name": "showcase.php", "source_file": "template-parts/home/showcase.php", "file_type": "code", "degree": 0}, {"id": "agents_rules_graphify", "label": "graphify.md", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "graphify.md", "community": 5, "community_name": "graphify.md", "source_file": ".agents/rules/graphify.md", "file_type": "document", "degree": 1}, {"id": "agents_rules_graphify_graphify", "label": "graphify", "color": {"background": "#EDC948", "border": "#EDC948", "highlight": {"background": "#ffffff", "border": "#EDC948"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "graphify", "community": 5, "community_name": "graphify.md", "source_file": ".agents/rules/graphify.md", "file_type": "document", "degree": 1}, {"id": "agents_workflows_graphify", "label": "graphify.md", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "graphify.md", "community": 6, "community_name": "graphify.md", "source_file": ".agents/workflows/graphify.md", "file_type": "document", "degree": 1}, {"id": "agents_workflows_graphify_workflow_graphify", "label": "Workflow: graphify", "color": {"background": "#B07AA1", "border": "#B07AA1", "highlight": {"background": "#ffffff", "border": "#B07AA1"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "Workflow: graphify", "community": 6, "community_name": "graphify.md", "source_file": ".agents/workflows/graphify.md", "file_type": "document", "degree": 1}, {"id": "header_border_guide", "label": "HEADER_BORDER_GUIDE.md", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "HEADER_BORDER_GUIDE.md", "community": 1, "community_name": "\u062f\u0644\u064a\u0644 \u062a\u0648\u062b\u064a\u0642 \u062e\u0637 \u062d\u062f\u0648\u062f \u0627\u0644\u0647\u064a\u062f\u0631 \u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647 (Header Border and Style Guide)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 1}, {"id": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide", "label": "\u062f\u0644\u064a\u0644 \u062a\u0648\u062b\u064a\u0642 \u062e\u0637 \u062d\u062f\u0648\u062f \u0627\u0644\u0647\u064a\u062f\u0631 \u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647 (Header Border and Style Guide)", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 40.0, "font": {"size": 12, "color": "#ffffff"}, "title": "\u062f\u0644\u064a\u0644 \u062a\u0648\u062b\u064a\u0642 \u062e\u0637 \u062d\u062f\u0648\u062f \u0627\u0644\u0647\u064a\u062f\u0631 \u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647 (Header Border and Style Guide)", "community": 1, "community_name": "\u062f\u0644\u064a\u0644 \u062a\u0648\u062b\u064a\u0642 \u062e\u0637 \u062d\u062f\u0648\u062f \u0627\u0644\u0647\u064a\u062f\u0631 \u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647 (Header Border and Style Guide)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 5}, {"id": "header_border_guide_1_\u0633\u0644\u0648\u0643_\u0627\u0644\u062e\u0637_\u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629_\u0627\u0644\u0623\u0635\u0644\u064a\u0629_original_behavior_issue", "label": "1. \u0633\u0644\u0648\u0643 \u0627\u0644\u062e\u0637 \u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0627\u0644\u0623\u0635\u0644\u064a\u0629 (Original Behavior & Issue)", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 28.0, "font": {"size": 12, "color": "#ffffff"}, "title": "1. \u0633\u0644\u0648\u0643 \u0627\u0644\u062e\u0637 \u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0627\u0644\u0623\u0635\u0644\u064a\u0629 (Original Behavior &amp; Issue)", "community": 2, "community_name": "1. \u0633\u0644\u0648\u0643 \u0627\u0644\u062e\u0637 \u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0627\u0644\u0623\u0635\u0644\u064a\u0629 (Original Behavior & Issue)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 3}, {"id": "header_border_guide_\u0643\u064a\u0641_\u0643\u0627\u0646_\u064a\u0639\u0645\u0644_\u0627\u0644\u062e\u0637", "label": "\u0643\u064a\u0641 \u0643\u0627\u0646 \u064a\u0639\u0645\u0644 \u0627\u0644\u062e\u0637\u061f", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "\u0643\u064a\u0641 \u0643\u0627\u0646 \u064a\u0639\u0645\u0644 \u0627\u0644\u062e\u0637\u061f", "community": 2, "community_name": "1. \u0633\u0644\u0648\u0643 \u0627\u0644\u062e\u0637 \u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0627\u0644\u0623\u0635\u0644\u064a\u0629 (Original Behavior & Issue)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 1}, {"id": "header_border_guide_\u0627\u0644\u0645\u0634\u0643\u0644\u0629", "label": "\u0627\u0644\u0645\u0634\u0643\u0644\u0629:", "color": {"background": "#E15759", "border": "#E15759", "highlight": {"background": "#ffffff", "border": "#E15759"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "\u0627\u0644\u0645\u0634\u0643\u0644\u0629:", "community": 2, "community_name": "1. \u0633\u0644\u0648\u0643 \u0627\u0644\u062e\u0637 \u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0627\u0644\u0623\u0635\u0644\u064a\u0629 (Original Behavior & Issue)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 1}, {"id": "header_border_guide_2_\u0627\u0644\u062d\u0644_\u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629_implemented_solution", "label": "2. \u0627\u0644\u062d\u0644 \u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629 (Implemented Solution)", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 28.0, "font": {"size": 12, "color": "#ffffff"}, "title": "2. \u0627\u0644\u062d\u0644 \u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629 (Implemented Solution)", "community": 3, "community_name": "2. \u0627\u0644\u062d\u0644 \u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629 (Implemented Solution)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 3}, {"id": "header_border_guide_\u0623\u0648\u0644\u0627_\u0625\u0644\u063a\u0627\u0621_\u0643\u0627\u0645\u0644_\u0627\u0644\u062d\u062f\u0648\u062f_\u0648\u0627\u0644\u0638\u0644\u0627\u0644_\u0627\u0644\u0645\u0648\u0631\u0648\u062b\u0629_css_specifity_override", "label": "\u0623\u0648\u0644\u0627\u064b: \u0625\u0644\u063a\u0627\u0621 \u0643\u0627\u0645\u0644 \u0627\u0644\u062d\u062f\u0648\u062f \u0648\u0627\u0644\u0638\u0644\u0627\u0644 \u0627\u0644\u0645\u0648\u0631\u0648\u062b\u0629 (CSS Specifity Override)", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "\u0623\u0648\u0644\u0627\u064b: \u0625\u0644\u063a\u0627\u0621 \u0643\u0627\u0645\u0644 \u0627\u0644\u062d\u062f\u0648\u062f \u0648\u0627\u0644\u0638\u0644\u0627\u0644 \u0627\u0644\u0645\u0648\u0631\u0648\u062b\u0629 (CSS Specifity Override)", "community": 3, "community_name": "2. \u0627\u0644\u062d\u0644 \u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629 (Implemented Solution)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 1}, {"id": "header_border_guide_\u062b\u0627\u0646\u064a\u0627_\u062a\u062b\u0628\u064a\u062a_\u0627\u0644\u062d\u062f\u0648\u062f_\u0648\u0627\u0644\u0638\u0644\u0627\u0644_\u0627\u0644\u0646\u0627\u0639\u0645\u0629_\u0639\u0644\u0649_\u0627\u0644\u0639\u0646\u0627\u0635\u0631_\u0627\u0644\u062f\u0627\u062e\u0644\u064a\u0629_\u0627\u0644\u0645\u062e\u0635\u0635\u0629", "label": "\u062b\u0627\u0646\u064a\u0627\u064b: \u062a\u062b\u0628\u064a\u062a \u0627\u0644\u062d\u062f\u0648\u062f \u0648\u0627\u0644\u0638\u0644\u0627\u0644 \u0627\u0644\u0646\u0627\u0639\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0639\u0646\u0627\u0635\u0631 \u0627\u0644\u062f\u0627\u062e\u0644\u064a\u0629 \u0627\u0644\u0645\u062e\u0635\u0635\u0629", "color": {"background": "#76B7B2", "border": "#76B7B2", "highlight": {"background": "#ffffff", "border": "#76B7B2"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "\u062b\u0627\u0646\u064a\u0627\u064b: \u062a\u062b\u0628\u064a\u062a \u0627\u0644\u062d\u062f\u0648\u062f \u0648\u0627\u0644\u0638\u0644\u0627\u0644 \u0627\u0644\u0646\u0627\u0639\u0645\u0629 \u0639\u0644\u0649 \u0627\u0644\u0639\u0646\u0627\u0635\u0631 \u0627\u0644\u062f\u0627\u062e\u0644\u064a\u0629 \u0627\u0644\u0645\u062e\u0635\u0635\u0629", "community": 3, "community_name": "2. \u0627\u0644\u062d\u0644 \u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629 (Implemented Solution)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 1}, {"id": "header_border_guide_3_\u0627\u0644\u0633\u0628\u0628_\u0627\u0644\u062c\u0630\u0631\u064a_\u0627\u0644\u062d\u0642\u064a\u0642\u064a_root_cause_critical", "label": "3. \u0627\u0644\u0633\u0628\u0628 \u0627\u0644\u062c\u0630\u0631\u064a \u0627\u0644\u062d\u0642\u064a\u0642\u064a (Root Cause \u2014 Critical!)", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "3. \u0627\u0644\u0633\u0628\u0628 \u0627\u0644\u062c\u0630\u0631\u064a \u0627\u0644\u062d\u0642\u064a\u0642\u064a (Root Cause \u2014 Critical!)", "community": 1, "community_name": "\u062f\u0644\u064a\u0644 \u062a\u0648\u062b\u064a\u0642 \u062e\u0637 \u062d\u062f\u0648\u062f \u0627\u0644\u0647\u064a\u062f\u0631 \u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647 (Header Border and Style Guide)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 1}, {"id": "header_border_guide_4_\u0625\u0631\u0634\u0627\u062f\u0627\u062a_\u0644\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629_future_modifications_guide", "label": "4. \u0625\u0631\u0634\u0627\u062f\u0627\u062a \u0644\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629 (Future Modifications Guide)", "color": {"background": "#F28E2B", "border": "#F28E2B", "highlight": {"background": "#ffffff", "border": "#F28E2B"}}, "size": 16.0, "font": {"size": 12, "color": "#ffffff"}, "title": "4. \u0625\u0631\u0634\u0627\u062f\u0627\u062a \u0644\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629 (Future Modifications Guide)", "community": 1, "community_name": "\u062f\u0644\u064a\u0644 \u062a\u0648\u062b\u064a\u0642 \u062e\u0637 \u062d\u062f\u0648\u062f \u0627\u0644\u0647\u064a\u062f\u0631 \u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647 (Header Border and Style Guide)", "source_file": "HEADER_BORDER_GUIDE.md", "file_type": "document", "degree": 1}];
+const RAW_EDGES = [{"from": "assets_js_custom", "to": "assets_js_custom_checkscroll", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "assets_js_custom", "to": "assets_js_custom_closesearchoverlay", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "assets_js_custom", "to": "assets_js_custom_closesidepanel", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "inc_footer_functions", "to": "inc_footer_functions_astra_child_custom_footer_copyright_text", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "inc_header_functions", "to": "inc_header_functions_astra_child_certificate_banner", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "inc_header_functions", "to": "inc_header_functions_astra_child_custom_logo_override", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "inc_setup", "to": "inc_setup_astra_child_enqueue_styles", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "inc_woocommerce", "to": "inc_woocommerce_get_bollu_categories", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "agents_rules_graphify", "to": "agents_rules_graphify_graphify", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "agents_workflows_graphify", "to": "agents_workflows_graphify_workflow_graphify", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "header_border_guide", "to": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide", "to": "header_border_guide_1_\u0633\u0644\u0648\u0643_\u0627\u0644\u062e\u0637_\u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629_\u0627\u0644\u0623\u0635\u0644\u064a\u0629_original_behavior_issue", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide", "to": "header_border_guide_2_\u0627\u0644\u062d\u0644_\u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629_implemented_solution", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide", "to": "header_border_guide_3_\u0627\u0644\u0633\u0628\u0628_\u0627\u0644\u062c\u0630\u0631\u064a_\u0627\u0644\u062d\u0642\u064a\u0642\u064a_root_cause_critical", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "header_border_guide_\u062f\u0644\u064a\u0644_\u062a\u0648\u062b\u064a\u0642_\u062e\u0637_\u062d\u062f\u0648\u062f_\u0627\u0644\u0647\u064a\u062f\u0631_\u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647_header_border_and_style_guide", "to": "header_border_guide_4_\u0625\u0631\u0634\u0627\u062f\u0627\u062a_\u0644\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0645\u0633\u062a\u0642\u0628\u0644\u064a\u0629_future_modifications_guide", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "header_border_guide_1_\u0633\u0644\u0648\u0643_\u0627\u0644\u062e\u0637_\u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629_\u0627\u0644\u0623\u0635\u0644\u064a\u0629_original_behavior_issue", "to": "header_border_guide_\u0627\u0644\u0645\u0634\u0643\u0644\u0629", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "header_border_guide_1_\u0633\u0644\u0648\u0643_\u0627\u0644\u062e\u0637_\u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629_\u0627\u0644\u0623\u0635\u0644\u064a\u0629_original_behavior_issue", "to": "header_border_guide_\u0643\u064a\u0641_\u0643\u0627\u0646_\u064a\u0639\u0645\u0644_\u0627\u0644\u062e\u0637", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "header_border_guide_2_\u0627\u0644\u062d\u0644_\u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629_implemented_solution", "to": "header_border_guide_\u0623\u0648\u0644\u0627_\u0625\u0644\u063a\u0627\u0621_\u0643\u0627\u0645\u0644_\u0627\u0644\u062d\u062f\u0648\u062f_\u0648\u0627\u0644\u0638\u0644\u0627\u0644_\u0627\u0644\u0645\u0648\u0631\u0648\u062b\u0629_css_specifity_override", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}, {"from": "header_border_guide_2_\u0627\u0644\u062d\u0644_\u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a_\u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629_implemented_solution", "to": "header_border_guide_\u062b\u0627\u0646\u064a\u0627_\u062a\u062b\u0628\u064a\u062a_\u0627\u0644\u062d\u062f\u0648\u062f_\u0648\u0627\u0644\u0638\u0644\u0627\u0644_\u0627\u0644\u0646\u0627\u0639\u0645\u0629_\u0639\u0644\u0649_\u0627\u0644\u0639\u0646\u0627\u0635\u0631_\u0627\u0644\u062f\u0627\u062e\u0644\u064a\u0629_\u0627\u0644\u0645\u062e\u0635\u0635\u0629", "label": "contains", "title": "contains [EXTRACTED]", "dashes": false, "width": 2, "color": {"opacity": 0.7}, "confidence": "EXTRACTED"}];
+const LEGEND = [{"cid": 0, "color": "#4E79A7", "label": "custom.js", "count": 4}, {"cid": 1, "color": "#F28E2B", "label": "\u062f\u0644\u064a\u0644 \u062a\u0648\u062b\u064a\u0642 \u062e\u0637 \u062d\u062f\u0648\u062f \u0627\u0644\u0647\u064a\u062f\u0631 \u0648\u062a\u0646\u0633\u064a\u0642\u0627\u062a\u0647 (Header Border and Style Guide)", "count": 4}, {"cid": 2, "color": "#E15759", "label": "1. \u0633\u0644\u0648\u0643 \u0627\u0644\u062e\u0637 \u0648\u0627\u0644\u0645\u0634\u0643\u0644\u0629 \u0627\u0644\u0623\u0635\u0644\u064a\u0629 (Original Behavior &amp; Issue)", "count": 3}, {"cid": 3, "color": "#76B7B2", "label": "2. \u0627\u0644\u062d\u0644 \u0648\u0627\u0644\u062a\u0639\u062f\u064a\u0644\u0627\u062a \u0627\u0644\u0628\u0631\u0645\u062c\u064a\u0629 (Implemented Solution)", "count": 3}, {"cid": 4, "color": "#59A14F", "label": "header-functions.php", "count": 3}, {"cid": 5, "color": "#EDC948", "label": "graphify.md", "count": 2}, {"cid": 6, "color": "#B07AA1", "label": "graphify.md", "count": 2}, {"cid": 7, "color": "#FF9DA7", "label": "footer-functions.php", "count": 2}, {"cid": 8, "color": "#9C755F", "label": "setup.php", "count": 2}, {"cid": 9, "color": "#BAB0AC", "label": "woocommerce.php", "count": 2}, {"cid": 10, "color": "#4E79A7", "label": "footer.php", "count": 1}, {"cid": 11, "color": "#F28E2B", "label": "front-page.php", "count": 1}, {"cid": 12, "color": "#E15759", "label": "functions.php", "count": 1}, {"cid": 13, "color": "#76B7B2", "label": "header.php", "count": 1}, {"cid": 14, "color": "#59A14F", "label": "certificate-banner.php", "count": 1}, {"cid": 15, "color": "#EDC948", "label": "main-header.php", "count": 1}, {"cid": 16, "color": "#B07AA1", "label": "categories.php", "count": 1}, {"cid": 17, "color": "#FF9DA7", "label": "hero.php", "count": 1}, {"cid": 18, "color": "#9C755F", "label": "products.php", "count": 1}, {"cid": 19, "color": "#BAB0AC", "label": "showcase.php", "count": 1}];
+
+// HTML-escape helper — prevents XSS when injecting graph data into innerHTML
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
+// Build vis datasets
+const nodesDS = new vis.DataSet(RAW_NODES.map(n => ({
+  id: n.id, label: n.label, color: n.color, size: n.size,
+  font: n.font, title: n.title,
+  _community: n.community, _community_name: n.community_name,
+  _source_file: n.source_file, _file_type: n.file_type, _degree: n.degree,
+})));
+
+const edgesDS = new vis.DataSet(RAW_EDGES.map((e, i) => ({
+  id: i, from: e.from, to: e.to,
+  label: '',
+  title: e.title,
+  dashes: e.dashes,
+  width: e.width,
+  color: e.color,
+  arrows: { to: { enabled: true, scaleFactor: 0.5 } },
+})));
+
+const container = document.getElementById('graph');
+const network = new vis.Network(container, { nodes: nodesDS, edges: edgesDS }, {
+  physics: {
+    enabled: true,
+    solver: 'forceAtlas2Based',
+    forceAtlas2Based: {
+      gravitationalConstant: -60,
+      centralGravity: 0.005,
+      springLength: 120,
+      springConstant: 0.08,
+      damping: 0.4,
+      avoidOverlap: 0.8,
+    },
+    stabilization: { iterations: 200, fit: true },
+  },
+  interaction: {
+    hover: true,
+    tooltipDelay: 100,
+    hideEdgesOnDrag: true,
+    navigationButtons: false,
+    keyboard: false,
+  },
+  nodes: { shape: 'dot', borderWidth: 1.5 },
+  edges: { smooth: { type: 'continuous', roundness: 0.2 }, selectionWidth: 3 },
+});
+
+network.once('stabilizationIterationsDone', () => {
+  network.setOptions({ physics: { enabled: false } });
+});
+
+function showInfo(nodeId) {
+  const n = nodesDS.get(nodeId);
+  if (!n) return;
+  const neighborIds = network.getConnectedNodes(nodeId);
+  const neighborItems = neighborIds.map(nid => {
+    const nb = nodesDS.get(nid);
+    const color = nb ? nb.color.background : '#555';
+    return `<span class="neighbor-link" style="border-left-color:${esc(color)}" onclick="focusNode(${JSON.stringify(nid)})">${esc(nb ? nb.label : nid)}</span>`;
+  }).join('');
+  document.getElementById('info-content').innerHTML = `
+    <div class="field"><b>${esc(n.label)}</b></div>
+    <div class="field">Type: ${esc(n._file_type || 'unknown')}</div>
+    <div class="field">Community: ${esc(n._community_name)}</div>
+    <div class="field">Source: ${esc(n._source_file || '-')}</div>
+    <div class="field">Degree: ${n._degree}</div>
+    ${neighborIds.length ? `<div class="field" style="margin-top:8px;color:#aaa;font-size:11px">Neighbors (${neighborIds.length})</div><div id="neighbors-list">${neighborItems}</div>` : ''}
+  `;
+}
+
+function focusNode(nodeId) {
+  network.focus(nodeId, { scale: 1.4, animation: true });
+  network.selectNodes([nodeId]);
+  showInfo(nodeId);
+}
+
+// Track hovered node — hover detection is more reliable than click params
+let hoveredNodeId = null;
+network.on('hoverNode', params => {
+  hoveredNodeId = params.node;
+  container.style.cursor = 'pointer';
+});
+network.on('blurNode', () => {
+  hoveredNodeId = null;
+  container.style.cursor = 'default';
+});
+container.addEventListener('click', () => {
+  if (hoveredNodeId !== null) {
+    showInfo(hoveredNodeId);
+    network.selectNodes([hoveredNodeId]);
+  }
+});
+network.on('click', params => {
+  if (params.nodes.length > 0) {
+    showInfo(params.nodes[0]);
+  } else if (hoveredNodeId === null) {
+    document.getElementById('info-content').innerHTML = '<span class="empty">Click a node to inspect it</span>';
+  }
+});
+
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('search-results');
+searchInput.addEventListener('input', () => {
+  const q = searchInput.value.toLowerCase().trim();
+  searchResults.innerHTML = '';
+  if (!q) { searchResults.style.display = 'none'; return; }
+  const matches = RAW_NODES.filter(n => n.label.toLowerCase().includes(q)).slice(0, 20);
+  if (!matches.length) { searchResults.style.display = 'none'; return; }
+  searchResults.style.display = 'block';
+  matches.forEach(n => {
+    const el = document.createElement('div');
+    el.className = 'search-item';
+    el.textContent = n.label;
+    el.style.borderLeft = `3px solid ${n.color.background}`;
+    el.style.paddingLeft = '8px';
+    el.onclick = () => {
+      network.focus(n.id, { scale: 1.5, animation: true });
+      network.selectNodes([n.id]);
+      showInfo(n.id);
+      searchResults.style.display = 'none';
+      searchInput.value = '';
+    };
+    searchResults.appendChild(el);
+  });
+});
+document.addEventListener('click', e => {
+  if (!searchResults.contains(e.target) && e.target !== searchInput)
+    searchResults.style.display = 'none';
+});
+
+const hiddenCommunities = new Set();
+
+const selectAllCb = document.getElementById('select-all-cb');
+
+function updateSelectAllState() {
+  const total = LEGEND.length;
+  const hidden = hiddenCommunities.size;
+  selectAllCb.checked = hidden === 0;
+  selectAllCb.indeterminate = hidden > 0 && hidden < total;
+}
+
+function toggleAllCommunities(hide) {
+  document.querySelectorAll('.legend-item').forEach(item => {
+    hide ? item.classList.add('dimmed') : item.classList.remove('dimmed');
+  });
+  document.querySelectorAll('.legend-cb').forEach(cb => {
+    cb.checked = !hide;
+  });
+  LEGEND.forEach(c => {
+    if (hide) hiddenCommunities.add(c.cid); else hiddenCommunities.delete(c.cid);
+  });
+  const updates = RAW_NODES.map(n => ({ id: n.id, hidden: hide }));
+  nodesDS.update(updates);
+  updateSelectAllState();
+}
+
+const legendEl = document.getElementById('legend');
+LEGEND.forEach(c => {
+  const item = document.createElement('div');
+  item.className = 'legend-item';
+  const cb = document.createElement('input');
+  cb.type = 'checkbox';
+  cb.className = 'legend-cb';
+  cb.checked = true;
+  cb.addEventListener('change', (e) => {
+    e.stopPropagation();
+    if (cb.checked) {
+      hiddenCommunities.delete(c.cid);
+      item.classList.remove('dimmed');
+    } else {
+      hiddenCommunities.add(c.cid);
+      item.classList.add('dimmed');
+    }
+    const updates = RAW_NODES
+      .filter(n => n.community === c.cid)
+      .map(n => ({ id: n.id, hidden: !cb.checked }));
+    nodesDS.update(updates);
+    updateSelectAllState();
+  });
+  item.innerHTML = `<div class="legend-dot" style="background:${c.color}"></div>
+    <span class="legend-label">${c.label}</span>
+    <span class="legend-count">${c.count}</span>`;
+  item.prepend(cb);
+  item.onclick = (e) => {
+    if (e.target === cb) return;
+    cb.checked = !cb.checked;
+    cb.dispatchEvent(new Event('change'));
+  };
+  legendEl.appendChild(item);
+});
+</script>
+<script>
+// Render hyperedges as shaded regions
+const hyperedges = [];
+// afterDrawing passes ctx already transformed to network coordinate space.
+// Draw node positions raw — no manual pan/zoom/DPR math needed.
+network.on('afterDrawing', function(ctx) {
+    hyperedges.forEach(h => {
+        const positions = h.nodes
+            .map(nid => network.getPositions([nid])[nid])
+            .filter(p => p !== undefined);
+        if (positions.length < 2) return;
+        ctx.save();
+        ctx.globalAlpha = 0.12;
+        ctx.fillStyle = '#6366f1';
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        // Centroid and expanded hull in network coordinates
+        const cx = positions.reduce((s, p) => s + p.x, 0) / positions.length;
+        const cy = positions.reduce((s, p) => s + p.y, 0) / positions.length;
+        const expanded = positions.map(p => ({
+            x: cx + (p.x - cx) * 1.15,
+            y: cy + (p.y - cy) * 1.15
+        }));
+        ctx.moveTo(expanded[0].x, expanded[0].y);
+        expanded.slice(1).forEach(p => ctx.lineTo(p.x, p.y));
+        ctx.closePath();
+        ctx.fill();
+        ctx.globalAlpha = 0.4;
+        ctx.stroke();
+        // Label
+        ctx.globalAlpha = 0.8;
+        ctx.fillStyle = '#4f46e5';
+        ctx.font = 'bold 11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(h.label, cx, cy - 5);
+        ctx.restore();
+    });
+});
+</script>
+</body>
+</html>

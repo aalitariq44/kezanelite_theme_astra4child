@@ -1,0 +1,112 @@
+{
+  "assets/js/custom.js": {
+    "mtime": 1783874816.7194586,
+    "ast_hash": "f13862ba2262d5f744fe04dd58d80696",
+    "semantic_hash": ""
+  },
+  "footer.php": {
+    "mtime": 1783868422.6853218,
+    "ast_hash": "c44e01444eb9150e72c386f12428fe51",
+    "semantic_hash": ""
+  },
+  "front-page.php": {
+    "mtime": 1783812590.4166012,
+    "ast_hash": "c62484bcd6a9ecd9c8de356d586c591b",
+    "semantic_hash": ""
+  },
+  "functions.php": {
+    "mtime": 1783813439.996691,
+    "ast_hash": "58b7f851fce25e9632f8d75b07ce5cb8",
+    "semantic_hash": ""
+  },
+  "header.php": {
+    "mtime": 1783875443.7459903,
+    "ast_hash": "2c9aa7c9211f15a810331cc174351593",
+    "semantic_hash": ""
+  },
+  "inc/footer-functions.php": {
+    "mtime": 1783813433.758011,
+    "ast_hash": "1fed36fa7a4117781cf56cb959413a30",
+    "semantic_hash": ""
+  },
+  "inc/header-functions.php": {
+    "mtime": 1783812138.3375297,
+    "ast_hash": "be327b2bf9b8d5fb9476034ac25ab741",
+    "semantic_hash": ""
+  },
+  "inc/setup.php": {
+    "mtime": 1783875386.64367,
+    "ast_hash": "971d6d0e3efe870a5e5da38860db17bd",
+    "semantic_hash": ""
+  },
+  "inc/woocommerce.php": {
+    "mtime": 1783812151.5069945,
+    "ast_hash": "61c9aa52ae8b7c03889de14ee8591826",
+    "semantic_hash": ""
+  },
+  "template-parts/header/certificate-banner.php": {
+    "mtime": 1783812164.8253095,
+    "ast_hash": "b6261f7cd197748278ca313ce73ae0d5",
+    "semantic_hash": ""
+  },
+  "template-parts/header/main-header.php": {
+    "mtime": 1783867210.3365517,
+    "ast_hash": "4ba219fea740246f881baf86a51ec6c9",
+    "semantic_hash": ""
+  },
+  "template-parts/home/categories.php": {
+    "mtime": 1783869931.202875,
+    "ast_hash": "1cb05b6d3c794007b01cbf9ded0ad9f5",
+    "semantic_hash": ""
+  },
+  "template-parts/home/hero.php": {
+    "mtime": 1783812192.2601118,
+    "ast_hash": "ade5347f47404eeacfeda9cba6eab5b6",
+    "semantic_hash": ""
+  },
+  "template-parts/home/products.php": {
+    "mtime": 1783867282.957992,
+    "ast_hash": "c41f453a8b590b8324199ce32e81cdf3",
+    "semantic_hash": ""
+  },
+  "template-parts/home/showcase.php": {
+    "mtime": 1783812220.0067096,
+    "ast_hash": "963f2aee54af9d55c12cf684e7974b84",
+    "semantic_hash": ""
+  },
+  ".agents/rules/graphify.md": {
+    "mtime": 1783875367.3366292,
+    "ast_hash": "a0e4d192b9e2e17256124dbfc8e24e6a",
+    "semantic_hash": ""
+  },
+  ".agents/workflows/graphify.md": {
+    "mtime": 1783875367.3376415,
+    "ast_hash": "637776aa6f7496d069afe7520c845c8a",
+    "semantic_hash": ""
+  },
+  "HEADER_BORDER_GUIDE.md": {
+    "mtime": 1783874235.384345,
+    "ast_hash": "f2c502c47716074664a907961cbf58e9",
+    "semantic_hash": ""
+  },
+  "assets/css/final_check.png": {
+    "mtime": 1783871597.5476253,
+    "ast_hash": "6a258a3761e030e5bd3a699d21362bab",
+    "semantic_hash": ""
+  },
+  "assets/css/reloaded_screenshot.png": {
+    "mtime": 1783871212.2217798,
+    "ast_hash": "ccfa5ef18da7d6e2a3f5d6ea3b40bd54",
+    "semantic_hash": ""
+  },
+  "assets/images/logo.svg": {
+    "mtime": 1783810802.8799098,
+    "ast_hash": "a7023f1e781dc9a9f6f6989243160c1d",
+    "semantic_hash": ""
+  },
+  "screenshot.png": {
+    "mtime": 1783817564.7674224,
+    "ast_hash": "2c407cd2bfb9b6420cf9859b85c0f805",
+    "semantic_hash": ""
+  }
+}
