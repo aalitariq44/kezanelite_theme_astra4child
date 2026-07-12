@@ -999,8 +999,8 @@ body .site-footer a:hover {
     color: var(--bollu-gold) !important;
 }
 
-/* 3. Slide-out Drawer Panel */
-.bollu-drawer-menu {
+/* 3. Side Panel — Bollu.ru Style */
+.side-panel {
     position: fixed;
     top: 0;
     left: 0;
@@ -1010,106 +1010,501 @@ body .site-footer a:hover {
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.4s ease;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
 }
 
-.bollu-drawer-menu.is-active {
+.side-panel.is-active {
     visibility: visible;
     opacity: 1;
     pointer-events: auto;
 }
 
-.bollu-drawer-overlay {
+/* Adjust position when WP Admin Bar is present */
+.admin-bar .side-panel {
+    top: 32px;
+    height: calc(100% - 32px);
+}
+
+@media screen and (max-width: 782px) {
+    .admin-bar .side-panel {
+        top: 46px;
+        height: calc(100% - 46px);
+    }
+}
+
+/* Overlay */
+.side-panel-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(4px);
+    background-color: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
-.bollu-drawer-content {
+/* Inner Panel */
+.side-panel-inner {
     position: absolute;
     top: 0;
     left: 0;
-    width: 320px;
+    width: 100%;
+    max-width: 460px;
     height: 100%;
-    background-color: var(--bollu-dark);
-    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.6);
-    padding: 60px 40px;
-    transform: translateX(-100%);
-    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    background-color: #ffffff;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.10);
     display: flex;
     flex-direction: column;
+    transform: translateX(-100%);
+    transition: transform 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
 }
 
-.bollu-drawer-menu.is-active .bollu-drawer-content {
+.side-panel.is-active .side-panel-inner {
     transform: translateX(0);
 }
 
-.bollu-drawer-close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-    background: none;
-    border: none;
-    color: var(--bollu-white);
-    font-size: 36px;
-    font-weight: 300;
-    cursor: pointer;
-    outline: none !important;
-    transition: color 0.3s ease;
+/* Panel Header — close button area */
+.side-panel-header {
+    flex-shrink: 0;
+    padding: 24px 32px 16px;
+    direction: ltr !important;
 }
 
-.bollu-drawer-close:hover {
-    color: var(--bollu-gold);
-}
-
-.bollu-drawer-logo {
+.side-panel-header-inner {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 50px;
+    justify-content: flex-start;
 }
 
-.bollu-drawer-nav {
+/* ── Close button inside a circle ── */
+.side-panel-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #d0d0d0;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #555;
+    transition: border-color 0.3s ease, color 0.3s ease;
+    outline: none !important;
+    padding: 0;
+    line-height: 1;
+}
+
+.side-panel-close svg {
+    width: 16px;
+    height: 16px;
+}
+
+.side-panel-close:hover {
+    border-color: #999;
+    color: #151515;
+}
+
+/* Scrollable Content */
+.side-panel-content {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0 32px 40px;
+    display: flex;
+    flex-direction: column;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,0,0,0.08) transparent;
+}
+
+.side-panel-content::-webkit-scrollbar {
+    width: 3px;
+}
+
+.side-panel-content::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.side-panel-content::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.08);
+    border-radius: 4px;
+}
+
+/* Search Bar */
+.side-panel-search {
+    margin: 8px 0 12px;
+}
+
+.side-panel-search-form {
+    margin: 0;
+    padding: 0;
+}
+
+.search-field-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    border-radius: 0;
+    padding: 10px 14px;
+    transition: border-color 0.3s ease;
+    background: #fafaf9;
+}
+
+.search-field-group:focus-within {
+    border-color: var(--bollu-gold, #BAA170);
+    background: #fff;
+}
+
+.search-icon-side {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    color: #bbb;
+}
+
+.search-icon-side svg {
+    width: 18px;
+    height: 18px;
+}
+
+.side-search-input {
+    flex: 1;
+    border: none !important;
+    background: transparent !important;
+    font-family: 'Tajawal', 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    color: #151515 !important;
+    outline: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    direction: rtl;
+}
+
+.side-search-input::placeholder {
+    color: #bbb;
+    font-weight: 300;
+}
+
+/* ==== Menu Navigation ==== */
+.side-menu-nav {
+    margin-bottom: 0;
     flex-grow: 1;
 }
 
-.bollu-drawer-nav ul,
-.bollu-drawer-menu-list {
+/* Reset all menu lists, including fallback wp_page_menu */
+.side-menu-nav ul,
+.side-menu-nav ul li,
+.side-panel-menu-list,
+.side-panel-menu-list ul {
     list-style: none !important;
     margin: 0 !important;
     padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 24px !important;
 }
 
-.bollu-drawer-nav li,
-.bollu-drawer-menu-list li {
-    margin: 0 !important;
-    list-style: none !important;
+/* Top-level items */
+.side-menu-nav > ul > li,
+.side-menu-nav > div > ul > li,
+.side-panel-menu-list > li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 
-.bollu-drawer-nav a,
-.bollu-drawer-nav ul li a,
-.bollu-drawer-menu-list li a {
-    color: var(--bollu-white) !important;
-    font-family: 'Outfit', 'Tajawal', sans-serif !important;
+.side-menu-nav > ul > li:last-child,
+.side-menu-nav > div > ul > li:last-child,
+.side-panel-menu-list > li:last-child {
+    border-bottom: none;
+}
+
+/* Top-level links */
+.side-menu-nav a,
+.side-menu-nav ul li a,
+.side-panel-menu-list > li > a {
+    display: block !important;
+    padding: 18px 0 !important;
+    color: #282828 !important;
+    font-family: 'Jost', 'Outfit', 'Tajawal', sans-serif !important;
     font-size: 16px !important;
     font-weight: 400 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.1em !important;
+    text-transform: none !important;
+    letter-spacing: 0.01em !important;
     text-decoration: none !important;
     transition: color 0.3s ease !important;
+    line-height: 1.4 !important;
+    text-align: left; /* default LTR alignment */
 }
 
-.bollu-drawer-nav a:hover,
-.bollu-drawer-nav ul li a:hover,
-.bollu-drawer-menu-list li a:hover {
-    color: var(--bollu-gold) !important;
+/* Align links correctly in RTL context */
+body.rtl .side-menu-nav a,
+body.rtl .side-menu-nav ul li a,
+body.rtl .side-panel-menu-list > li > a {
+    text-align: right !important;
+}
+
+.side-menu-nav a:hover,
+.side-menu-nav ul li a:hover,
+.side-panel-menu-list > li > a:hover {
+    color: var(--bollu-gold, #BAA170) !important;
+}
+
+/* Items with children — layout for toggle */
+.side-menu-nav li.menu-item-has-children,
+.side-menu-nav li.page_item_has_children,
+.side-panel-menu-list > li.menu-item-has-children {
+    position: relative;
+}
+
+.side-menu-nav li.menu-item-has-children > a,
+.side-menu-nav li.page_item_has_children > a,
+.side-panel-menu-list > li.menu-item-has-children > a {
+    padding-right: 44px;
+}
+
+body.rtl .side-menu-nav li.menu-item-has-children > a,
+body.rtl .side-menu-nav li.page_item_has_children > a,
+body.rtl .side-panel-menu-list > li.menu-item-has-children > a {
+    padding-left: 44px;
+    padding-right: 0;
+}
+
+/* Toggle button (chevron) for submenus */
+.side-menu-toggle {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 44px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    outline: none !important;
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+body.rtl .side-menu-toggle {
+    left: 0;
+    right: auto;
+}
+
+.side-menu-toggle::after {
+    content: '';
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    margin-top: -2px;
+}
+
+.side-menu-toggle.is-open::after {
+    transform: rotate(-135deg);
+    margin-top: 2px;
+}
+
+.side-menu-toggle:hover {
+    color: #555;
+}
+
+/* Sub-menu hidden by default */
+.side-menu-nav .sub-menu,
+.side-menu-nav .children,
+.side-panel-menu-list .sub-menu {
+    display: none;
+    padding-left: 16px !important;
+    padding-bottom: 12px !important;
+    margin: 0 !important;
+}
+
+body.rtl .side-menu-nav .sub-menu,
+body.rtl .side-menu-nav .children,
+body.rtl .side-panel-menu-list .sub-menu {
+    padding-right: 16px !important;
+    padding-left: 0 !important;
+}
+
+.side-menu-nav .sub-menu.is-open,
+.side-menu-nav .children.is-open,
+.side-panel-menu-list .sub-menu.is-open {
+    display: block;
+}
+
+/* Sub-menu items */
+.side-menu-nav .sub-menu > li,
+.side-menu-nav .children > li,
+.side-panel-menu-list .sub-menu > li {
+    border-bottom: none !important;
+}
+
+.side-menu-nav .sub-menu > li > a,
+.side-menu-nav .children > li > a,
+.side-panel-menu-list .sub-menu > li > a {
+    display: block !important;
+    padding: 9px 0 !important;
+    color: #686868 !important;
+    font-family: 'Jost', 'Outfit', 'Tajawal', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    letter-spacing: 0.01em !important;
+    text-decoration: none !important;
+    transition: color 0.3s ease !important;
+    line-height: 1.5 !important;
+}
+
+.side-menu-nav .sub-menu > li > a:hover,
+.side-menu-nav .children > li > a:hover,
+.side-panel-menu-list .sub-menu > li > a:hover {
+    color: var(--bollu-gold, #BAA170) !important;
+}
+
+/* Nested sub-menu items with children */
+.side-menu-nav li.menu-item-has-children li.menu-item-has-children,
+.side-menu-nav li.page_item_has_children li.page_item_has_children,
+.side-panel-menu-list .sub-menu > li.menu-item-has-children {
+    position: relative;
+}
+
+.side-menu-nav li.menu-item-has-children li.menu-item-has-children > a,
+.side-menu-nav li.page_item_has_children li.page_item_has_children > a,
+.side-panel-menu-list .sub-menu > li.menu-item-has-children > a {
+    padding-right: 34px;
+}
+
+body.rtl .side-menu-nav li.menu-item-has-children li.menu-item-has-children > a,
+body.rtl .side-menu-nav li.page_item_has_children li.page_item_has_children > a,
+body.rtl .side-panel-menu-list .sub-menu > li.menu-item-has-children > a {
+    padding-left: 34px;
+    padding-right: 0;
+}
+
+.side-menu-nav .sub-menu .side-menu-toggle,
+.side-menu-nav .children .side-menu-toggle,
+.side-panel-menu-list .sub-menu .side-menu-toggle {
+    height: 40px;
+    width: 34px;
+}
+
+/* Deeper nested sub-menus */
+.side-menu-nav .sub-menu .sub-menu,
+.side-menu-nav .children .children,
+.side-panel-menu-list .sub-menu .sub-menu {
+    padding-left: 14px !important;
+    padding-bottom: 8px !important;
+}
+
+body.rtl .side-menu-nav .sub-menu .sub-menu,
+body.rtl .side-menu-nav .children .children,
+body.rtl .side-panel-menu-list .sub-menu .sub-menu {
+    padding-right: 14px !important;
+    padding-left: 0 !important;
+}
+
+.side-menu-nav .sub-menu .sub-menu > li > a,
+.side-menu-nav .children .children > li > a,
+.side-panel-menu-list .sub-menu .sub-menu > li > a {
+    font-size: 13px !important;
+    color: #888 !important;
+    padding: 7px 0 !important;
+}
+
+.side-panel-menu-list .sub-menu .sub-menu > li > a:hover {
+    color: var(--bollu-gold, #BAA170) !important;
+}
+
+/* ==== Contact Block at Bottom ==== */
+.side-panel-contact {
+    margin-top: auto;
+    padding-top: 28px;
+}
+
+/* Short separator line — not full width */
+.side-panel-contact-rule {
+    width: 60px;
+    height: 1px;
+    background: #c8c8c8;
+    margin-bottom: 28px;
+}
+
+.side-panel-contact-heading {
+    font-family: 'Jost', 'Outfit', 'Tajawal', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--bollu-gold, #BAA170);
+    margin-bottom: 22px;
+}
+
+.side-panel-contact-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 8px 0;
+    color: #444 !important;
+    font-family: 'Jost', 'Inter', 'Tajawal', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none !important;
+    transition: color 0.3s ease;
+    line-height: 1.5;
+}
+
+a.side-panel-contact-row:hover {
+    color: var(--bollu-gold, #BAA170) !important;
+}
+
+a.side-panel-contact-row:hover .side-panel-contact-icon {
+    border-color: var(--bollu-gold, #BAA170);
+    color: var(--bollu-gold, #BAA170);
+}
+
+/* ── Circular outlined icons ── */
+.side-panel-contact-icon {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--bollu-gold, #BAA170);
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.side-panel-contact-icon svg {
+    width: 16px;
+    height: 16px;
+}
+
+.side-panel-contact-address {
+    margin-top: 2px;
+}
+
+.side-panel-contact-city {
+    font-family: 'Jost', 'Outfit', 'Tajawal', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--bollu-gold, #BAA170);
+    margin-top: 14px;
+    padding-left: 50px;
+}
+
+/* Lock body scroll when panel is open */
+body.side-panel-open {
+    overflow: hidden !important;
 }
 
 /* Adjust general padding-top for body content since custom header is sticky */
@@ -1120,15 +1515,19 @@ body.home {
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .bollu-sub-header {
-        display: none !important; /* Hide thin sub-header on mobile */
+        display: none !important;
     }
     .bollu-main-header {
         padding: 15px 20px;
     }
-    .bollu-drawer-content {
-        width: 100%;
-        max-width: 280px;
-        padding: 50px 30px;
+    .side-panel-inner {
+        max-width: 100%;
+    }
+    .side-panel-content {
+        padding: 0 24px 30px;
+    }
+    .side-panel-header {
+        padding: 20px 24px 14px;
     }
 }
 

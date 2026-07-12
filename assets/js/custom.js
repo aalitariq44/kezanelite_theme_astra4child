@@ -56,10 +56,67 @@
             $(this).attr('aria-expanded', expanded);
         });
 
-        // Toggle Drawer Menu
-        $('.bollu-hamburger-btn, .bollu-drawer-overlay, .bollu-drawer-close').on('click', function(e) {
+        // ===== Side Panel (Bollu.ru Style) =====
+        var $sidePanel = $('#mobile-menu');
+        var $sidePanelOverlay = $sidePanel.find('.side-panel-overlay');
+        var $sidePanelClose = $sidePanel.find('.side-panel-close');
+
+        // Open side panel
+        $('.bollu-hamburger-btn').on('click', function(e) {
             e.preventDefault();
-            $('.bollu-drawer-menu').toggleClass('is-active');
+            $sidePanel.addClass('is-active');
+            $('body').addClass('side-panel-open');
+        });
+
+        // Close side panel
+        function closeSidePanel() {
+            $sidePanel.removeClass('is-active');
+            $('body').removeClass('side-panel-open');
+        }
+
+        $sidePanelClose.on('click', function(e) {
+            e.preventDefault();
+            closeSidePanel();
+        });
+
+        $sidePanelOverlay.on('click', function(e) {
+            closeSidePanel();
+        });
+
+        // Close on Escape key
+        $(document).on('keydown', function(e) {
+            if (e.key === 'Escape' && $sidePanel.hasClass('is-active')) {
+                closeSidePanel();
+            }
+        });
+
+        // ===== Submenu Accordion Toggles =====
+        // Dynamically inject toggle buttons for menu items with children (and page_item_has_children)
+        $sidePanel.find('.menu-item-has-children, .page_item_has_children').each(function() {
+            var $item = $(this);
+            // Only add toggle if not already present
+            if (!$item.find('> .side-menu-toggle').length) {
+                var $toggle = $('<button class="side-menu-toggle" aria-label="Toggle submenu"></button>');
+                $item.append($toggle);
+            }
+        });
+
+        // Handle submenu toggle click
+        $sidePanel.on('click', '.side-menu-toggle', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var $toggle = $(this);
+            var $subMenu = $toggle.siblings('.sub-menu, .children');
+            
+            $toggle.toggleClass('is-open');
+            $subMenu.toggleClass('is-open');
+            
+            // Slide animation
+            if ($subMenu.hasClass('is-open')) {
+                $subMenu.stop().slideDown(250);
+            } else {
+                $subMenu.stop().slideUp(200);
+            }
         });
 
         // Toggle Search Overlay

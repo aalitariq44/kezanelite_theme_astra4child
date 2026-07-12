@@ -92,26 +92,68 @@ if ( apply_filters( 'astra_header_profile_gmpg_link', true ) ) {
             </div>
         </div>
 
-        <!-- Slide-out Drawer Panel -->
-        <div class="bollu-drawer-menu">
-            <div class="bollu-drawer-overlay"></div>
-            <div class="bollu-drawer-content">
-                <button class="bollu-drawer-close" aria-label="Close Menu">&times;</button>
-                <div class="bollu-drawer-logo">
-                    <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logo.svg" class="custom-logo" alt="kizanelite" />
-                    <span class="custom-logo-text">kizanelite</span>
-                </div>
-                <div class="bollu-drawer-nav">
-                    <?php
-                    wp_nav_menu( array(
-                        'theme_location' => 'primary',
-                        'menu_id'        => 'primary-menu-drawer',
-                        'container'      => false,
-                    ) );
-                    ?>
+        <!-- Slide-out Side Panel (Bollu.ru Style) -->
+        <nav id="mobile-menu" class="side-panel side-mobile-menu">
+            <div class="side-panel-overlay"></div>
+            <div class="side-panel-inner">
+
+                <!-- Panel Header with Close Button -->
+                <header class="side-panel-header">
+                    <div class="side-panel-header-inner">
+                        <button class="side-panel-close" aria-label="إغلاق القائمة">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- Scrollable Panel Content -->
+                <div class="side-panel-content">
+
+                    <!-- Navigation Menu -->
+                    <div id="side-menu-container" class="side-menu-nav">
+                        <?php
+                        wp_nav_menu( array(
+                            'theme_location'  => 'primary',
+                            'menu_id'         => 'side-panel-menu',
+                            'menu_class'      => 'side-panel-menu-list',
+                            'container'       => false,
+                            'walker'          => class_exists( 'Kizan_Side_Menu_Walker' ) ? new Kizan_Side_Menu_Walker() : null,
+                        ) );
+                        ?>
+                    </div>
+
+                    <!-- Contact Section at Bottom -->
+                    <div class="side-panel-contact">
+                        <div class="side-panel-contact-rule"></div>
+                        <div class="side-panel-contact-heading">KIZAN ELITE — THE HOUSE</div>
+                        
+                        <a class="side-panel-contact-row" href="tel:+9647709588489">
+                            <span class="side-panel-contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                            </span>
+                            <span>+964 770 958 8489</span>
+                        </a>
+                        
+                        <a class="side-panel-contact-row" href="mailto:info@kizanelite.com">
+                            <span class="side-panel-contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                            </span>
+                            <span>info@kizanelite.com</span>
+                        </a>
+                        
+                        <div class="side-panel-contact-row side-panel-contact-address">
+                            <span class="side-panel-contact-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            </span>
+                            <span>Большой Саввинский переулок, 12, стр. 8</span>
+                        </div>
+                        
+                        <div class="side-panel-contact-city">МОСКВА · РОССИЯ</div>
+                    </div>
+
                 </div>
             </div>
-        </div>
+        </nav>
 
         <!-- Search Overlay -->
         <div class="bollu-search-overlay" id="bolluSearchOverlay">
