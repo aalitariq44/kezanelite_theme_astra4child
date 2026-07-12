@@ -145,10 +145,10 @@ if ( apply_filters( 'astra_header_profile_gmpg_link', true ) ) {
                             <span class="side-panel-contact-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             </span>
-                            <span>Большой Саввинский переулок, 12, стр. 8</span>
+                            <span>بولشوي سافينسكي، 12، مبنى 8</span>
                         </div>
                         
-                        <div class="side-panel-contact-city">МОСКВА · РОССИЯ</div>
+                        <div class="side-panel-contact-city">موسكو · روسيا</div>
                     </div>
 
                 </div>
