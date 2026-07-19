@@ -24,7 +24,7 @@ function astra_child_custom_logo_override( $html ) {
         '</a>',
         esc_url( $site_url ),
         esc_url( $logo_url ),
-        esc_attr( 'kizanelite' )
+        esc_attr( 'kezanelite' )
     );
     
     return $html;

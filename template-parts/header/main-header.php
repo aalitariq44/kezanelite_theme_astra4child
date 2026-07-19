@@ -24,7 +24,7 @@
             </div>
             <!-- Right side: Contact Info -->
             <div class="bollu-sub-contact">
-                <a href="mailto:info@kizanelite.com" class="contact-link">info@kizanelite.com</a>
+                <a href="mailto:info@kezanelite.com" class="contact-link">info@kezanelite.com</a>
                 <span class="divider">|</span>
                 <a href="tel:+9647709588489" class="contact-link">+964 770 958 8489</a>
             </div>
@@ -60,8 +60,8 @@
         <div class="bollu-drawer-content">
             <button class="bollu-drawer-close" aria-label="Close Menu">&times;</button>
             <div class="bollu-drawer-logo">
-                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logo.svg" class="custom-logo" alt="kizanelite" />
-                <span class="custom-logo-text">kizanelite</span>
+                <img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/images/logo.svg" class="custom-logo" alt="kezanelite" />
+                <span class="custom-logo-text">kezanelite</span>
             </div>
             <div class="bollu-drawer-nav">
                 <?php

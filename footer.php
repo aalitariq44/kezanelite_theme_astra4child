@@ -28,12 +28,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="bollu-pre-footer">
 		<div class="pre-footer-container">
 			<div class="pre-footer-col">
-				<h3>التواصل مع Kizan Elite</h3>
+				<h3>التواصل مع Kezan Elite</h3>
 				<p class="description">للاستفسار عن القطع الفنية، التشكيلات، والمشاريع الخاصة.</p>
 				<p class="contact-info">
 					<a href="tel:+9647709588489">+964 770 958 8489</a>
 					<span class="sep">|</span>
-					<a href="mailto:info@kizanelite.com">info@kizanelite.com</a>
+					<a href="mailto:info@kezanelite.com">info@kezanelite.com</a>
 				</p>
 			</div>
 			<div class="pre-footer-col">
@@ -59,7 +59,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					
 					<div class="footer-contact-details">
 						<a href="tel:+9647709588489" class="footer-contact-link">+964 770 958 8489</a>
-						<a href="mailto:info@kizanelite.com" class="footer-contact-link">info@kizanelite.com</a>
+						<a href="mailto:info@kezanelite.com" class="footer-contact-link">info@kezanelite.com</a>
 					</div>
 				</div>
 			</div>
@@ -74,7 +74,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 					<div class="bollu-cert-text-block">
 						<span class="cert-subtitle">CERTIFICATE OF ORIGIN</span>
-						<h3 class="cert-title">The Original by Kizan Elite</h3>
+						<h3 class="cert-title">The Original by Kezan Elite</h3>
 						<span class="cert-tagline">FURNITURE AS ART</span>
 					</div>
 				</div>
@@ -113,7 +113,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="footer-bottom-row">
 			<div class="footer-bottom-container">
 				<div class="footer-copyright-block">
-					<p class="footer-copyright-text">© 2019—2026 KIZAN ELITE FURNITURE AS ART</p>
+					<p class="footer-copyright-text">© 2019—2026 KEZAN ELITE FURNITURE AS ART</p>
 					<p class="footer-disclaimer-text">المعلومات الواردة على الموقع هي لأغراض مرجعية فقط ولا تشكل عرضاً عاماً.</p>
 					<a href="#" class="footer-privacy-link">سياسة الخصوصية</a>
 				</div>

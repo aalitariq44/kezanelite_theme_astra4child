@@ -64,7 +64,7 @@ if ( apply_filters( 'astra_header_profile_gmpg_link', true ) ) {
                 <div class="bollu-sub-contact">
                     <a href="tel:+9647709588489" class="contact-link">+964 770 958 8489</a>
                     <span class="divider">|</span>
-                    <a href="mailto:info@kizanelite.com" class="contact-link">info@kizanelite.com</a>
+                    <a href="mailto:info@kezanelite.com" class="contact-link">info@kezanelite.com</a>
                 </div>
             </div>
         </div>
@@ -117,7 +117,7 @@ if ( apply_filters( 'astra_header_profile_gmpg_link', true ) ) {
                             'menu_id'         => 'side-panel-menu',
                             'menu_class'      => 'side-panel-menu-list',
                             'container'       => false,
-                            'walker'          => class_exists( 'Kizan_Side_Menu_Walker' ) ? new Kizan_Side_Menu_Walker() : null,
+                            'walker'          => class_exists( 'Kezan_Side_Menu_Walker' ) ? new Kezan_Side_Menu_Walker() : null,
                         ) );
                         ?>
                     </div>
@@ -125,7 +125,7 @@ if ( apply_filters( 'astra_header_profile_gmpg_link', true ) ) {
                     <!-- Contact Section at Bottom -->
                     <div class="side-panel-contact">
                         <div class="side-panel-contact-rule"></div>
-                        <div class="side-panel-contact-heading">KIZAN ELITE — THE HOUSE</div>
+                        <div class="side-panel-contact-heading">KEZAN ELITE — THE HOUSE</div>
                         
                         <a class="side-panel-contact-row" href="tel:+9647709588489">
                             <span class="side-panel-contact-icon">
@@ -134,11 +134,11 @@ if ( apply_filters( 'astra_header_profile_gmpg_link', true ) ) {
                             <span>+964 770 958 8489</span>
                         </a>
                         
-                        <a class="side-panel-contact-row" href="mailto:info@kizanelite.com">
+                        <a class="side-panel-contact-row" href="mailto:info@kezanelite.com">
                             <span class="side-panel-contact-icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                             </span>
-                            <span>info@kizanelite.com</span>
+                            <span>info@kezanelite.com</span>
                         </a>
                         
                         <div class="side-panel-contact-row side-panel-contact-address">
