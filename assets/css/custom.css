@@ -2287,17 +2287,26 @@ body.bollu-search-open {
     line-height: 1.2 !important;
 }
 
-/* Product price */
+/* Product price container */
 .single-product div.product p.price,
-.single-product div.product .price,
-.single-product div.product .price * {
+.single-product div.product .price {
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
     font-size: 24px !important;
     color: var(--bollu-gold) !important;
     margin-bottom: 30px !important;
-    display: flex !important;
+    display: inline-flex !important; /* Prevent block full-width expansion */
     align-items: center !important;
-    gap: 15px !important;
+    gap: 6px !important; /* Keeps currency symbol and number close together */
+    direction: ltr !important; /* Force left-to-right to display currency symbol correctly */
+}
+
+/* Force color and size on nested WooCommerce price elements (like bdi, amount, currencySymbol) without flex layout */
+.single-product div.product p.price *,
+.single-product div.product .price * {
+    font-family: 'Outfit', 'Tajawal', sans-serif !important;
+    font-size: 24px !important;
+    color: var(--bollu-gold) !important;
+    display: inline !important; /* Force inline display to keep currency symbol adjacent to number */
 }
 
 .single-product div.product p.price del,
