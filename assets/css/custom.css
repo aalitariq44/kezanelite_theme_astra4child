@@ -2280,7 +2280,7 @@ body.bollu-search-open {
 /* Product title */
 .single-product div.product .product_title {
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
-    color: var(--bollu-white) !important;
+    color: var(--bollu-black) !important; /* Fixed: changed from white to black */
     font-size: 2.5rem !important;
     font-weight: 400 !important;
     margin-bottom: 20px !important;
@@ -2316,6 +2316,42 @@ body.bollu-search-open {
     color: var(--bollu-gold) !important;
     text-decoration: none !important;
     font-weight: 500 !important;
+}
+
+/* Product summary texts (description, attributes, labels) - Fixed white-on-white text issues */
+.single-product div.product .woocommerce-product-details__short-description,
+.single-product div.product .woocommerce-product-details__short-description p,
+.single-product div.product .summary p,
+.single-product div.product .summary span:not(.price):not(.amount),
+.single-product div.product .summary div,
+.single-product div.product .summary label,
+.single-product div.product .summary th,
+.single-product div.product .summary td,
+.single-product div.product .summary dt,
+.single-product div.product .summary dd,
+.single-product div.product .summary li {
+    color: var(--bollu-black) !important;
+    font-family: 'Inter', 'Tajawal', sans-serif !important;
+}
+
+.single-product div.product .woocommerce-product-details__short-description,
+.single-product div.product .woocommerce-product-details__short-description p,
+.single-product div.product .summary p {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    color: #444444 !important; /* Elegant charcoal color for short descriptions */
+}
+
+/* Ensure stock status is clean and readable */
+.single-product div.product .summary .stock.in-stock {
+    color: #2e7d32 !important; /* Elegant dark green for in stock */
+    font-weight: 500 !important;
+    font-size: 13px !important;
+}
+.single-product div.product .summary .stock.out-of-stock {
+    color: #c62828 !important; /* Elegant dark red for out of stock */
+    font-weight: 500 !important;
+    font-size: 13px !important;
 }
 
 /* Add to cart quantity input */
@@ -2367,23 +2403,63 @@ body.bollu-search-open {
     box-shadow: 0 6px 20px rgba(186, 161, 112, 0.4) !important;
 }
 
-/* Breadcrumbs (Astra breadcrumbs or WooCommerce breadcrumbs) */
-.woocommerce-breadcrumb,
-.woocommerce-breadcrumb a,
-.ast-breadcrumbs,
-.ast-breadcrumbs a {
+/* Breadcrumbs (Astra breadcrumbs or WooCommerce breadcrumbs) - Fixed: High specificity rules to override theme link color */
+body.single-product #content .woocommerce-breadcrumb,
+body.single-product #content .woocommerce-breadcrumb a,
+body.single-product #content .ast-breadcrumbs,
+body.single-product #content .ast-breadcrumbs a,
+body.single-product .woocommerce-breadcrumb,
+body.single-product .woocommerce-breadcrumb a,
+body.single-product .ast-breadcrumbs,
+body.single-product .ast-breadcrumbs a {
     color: var(--bollu-gray) !important;
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
     font-size: 12px !important;
     text-decoration: none !important;
+    transition: color 0.3s ease !important;
 }
 
-.woocommerce-breadcrumb a:hover,
-.ast-breadcrumbs a:hover {
+body.single-product #content .woocommerce-breadcrumb a:hover,
+body.single-product #content .ast-breadcrumbs a:hover,
+body.single-product .woocommerce-breadcrumb a:hover,
+body.single-product .ast-breadcrumbs a:hover {
     color: var(--bollu-gold) !important;
 }
 
-/* Product Meta (SKU, Categories, Tags) */
+/* Category links in product summary - Fixed primitive Astra theme blue link design */
+body.single-product #content .summary .posted_in,
+body.single-product #content .summary .product_meta,
+body.single-product #content .summary .ast-product-single-categories,
+body.single-product #content .summary .ast-woo-product-category,
+body.single-product #content .summary .posted_in span,
+body.single-product #content .summary .posted_in strong {
+    font-size: 11px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.15em !important;
+    margin-bottom: 15px !important;
+    display: block !important;
+    font-family: 'Outfit', 'Tajawal', sans-serif !important;
+    color: var(--bollu-gray) !important;
+}
+
+body.single-product #content .summary .posted_in a,
+body.single-product #content .summary .product_meta a,
+body.single-product #content .summary .ast-product-single-categories a,
+body.single-product #content .summary .ast-woo-product-category a {
+    color: var(--bollu-gold) !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: color 0.3s ease !important;
+}
+
+body.single-product #content .summary .posted_in a:hover,
+body.single-product #content .summary .product_meta a:hover,
+body.single-product #content .summary .ast-product-single-categories a:hover,
+body.single-product #content .summary .ast-woo-product-category a:hover {
+    color: var(--bollu-gold-hover) !important;
+}
+
+/* Product Meta (SKU, Categories, Tags at bottom) */
 .single-product div.product .product_meta,
 .single-product div.product .product_meta span,
 .single-product div.product .product_meta strong {
@@ -2395,13 +2471,14 @@ body.bollu-search-open {
 }
 
 .single-product div.product .product_meta a {
-    color: var(--bollu-light-gray) !important;
+    color: var(--bollu-gold) !important; /* Changed from light-gray to gold for luxury feel */
     text-decoration: none !important;
+    font-weight: 500 !important;
     transition: color 0.3s ease !important;
 }
 
 .single-product div.product .product_meta a:hover {
-    color: var(--bollu-gold) !important;
+    color: var(--bollu-gold-hover) !important;
 }
 
 /* Image zoom/magnify button */
@@ -2425,9 +2502,9 @@ body.bollu-search-open {
     color: var(--bollu-black) !important;
 }
 
-/* Reviews and Tabs styling */
+/* Reviews and Tabs styling - Fixed white-on-white active tab text */
 .single-product .woocommerce-tabs {
-    border-top: 1px solid var(--bollu-border) !important;
+    border-top: 1px solid #e5e5e5 !important; /* Fixed: changed from dark border to light gray */
     margin-top: 50px !important;
     padding-top: 40px !important;
 }
@@ -2437,7 +2514,7 @@ body.bollu-search-open {
     list-style: none !important;
     margin: 0 0 30px 0 !important;
     padding: 0 !important;
-    border-bottom: 1px solid var(--bollu-border) !important;
+    border-bottom: 1px solid #e5e5e5 !important; /* Fixed: changed from dark border to light gray */
     gap: 30px !important;
 }
 
@@ -2450,7 +2527,7 @@ body.bollu-search-open {
 }
 
 .single-product .woocommerce-tabs ul.tabs li a {
-    color: var(--bollu-gray) !important;
+    color: #777777 !important; /* Fixed: changed from gray to darker gray for readability */
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
     font-size: 14px !important;
     text-transform: uppercase !important;
@@ -2465,16 +2542,16 @@ body.bollu-search-open {
 }
 
 .single-product .woocommerce-tabs ul.tabs li.active a {
-    color: var(--bollu-white) !important;
+    color: var(--bollu-black) !important; /* Fixed: changed from white to black */
 }
 
 .single-product .woocommerce-tabs ul.tabs li a:hover {
     color: var(--bollu-gold) !important;
 }
 
-/* Tabs content */
+/* Tabs content - Fixed white-on-white text issues */
 .single-product .woocommerce-Tabs-panel {
-    color: var(--bollu-light-gray) !important;
+    color: #444444 !important; /* Fixed: changed from light gray to dark gray for high readability */
     font-family: 'Inter', 'Tajawal', sans-serif !important;
     font-size: 15px !important;
     line-height: 1.8 !important;
@@ -2482,15 +2559,15 @@ body.bollu-search-open {
 
 .single-product .woocommerce-Tabs-panel h2 {
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
-    color: var(--bollu-white) !important;
+    color: var(--bollu-black) !important; /* Fixed: changed from white to black */
     font-size: 20px !important;
     margin-bottom: 20px !important;
 }
 
-/* Reviews and Comments form */
+/* Reviews list - Fixed dark bg card on white layout */
 .single-product #reviews #comments ol.commentlist li {
-    background-color: var(--bollu-card-bg) !important;
-    border: 1px solid var(--bollu-border) !important;
+    background-color: #fcfcfc !important; /* Fixed: light card background instead of dark gray */
+    border: 1px solid #e5e5e5 !important; /* Fixed: light gray border */
     border-radius: 2px !important;
     padding: 20px !important;
     margin-bottom: 20px !important;
@@ -2503,12 +2580,19 @@ body.bollu-search-open {
 }
 
 .single-product #reviews #comments ol.commentlist li .meta {
-    color: var(--bollu-gold) !important;
+    color: #666666 !important; /* Fixed: changed from gold to readable dark gray */
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
+    font-size: 13px !important;
+}
+
+.single-product #reviews #comments ol.commentlist li .meta strong {
+    color: var(--bollu-black) !important;
 }
 
 .single-product #reviews #comments ol.commentlist li .description {
-    color: var(--bollu-white) !important;
+    color: #444444 !important; /* Fixed: changed from white to dark gray */
+    margin-top: 10px !important;
+    font-size: 14px !important;
 }
 
 /* Stars rating */
@@ -2516,14 +2600,24 @@ body.bollu-search-open {
     color: var(--bollu-gold) !important;
 }
 
+/* Review comments inputs - Fixed: inputs are readable and look luxury */
 .single-product .comment-form input[type="text"],
 .single-product .comment-form input[type="email"],
 .single-product .comment-form textarea {
-    background-color: var(--bollu-dark) !important;
-    border: 1px solid var(--bollu-border) !important;
-    color: var(--bollu-white) !important;
+    background-color: #ffffff !important; /* Fixed: white background */
+    border: 1px solid #cccccc !important; /* Light border */
+    color: var(--bollu-black) !important; /* Black text */
     border-radius: 2px !important;
     padding: 10px 15px !important;
+    width: 100% !important;
+    font-family: 'Inter', 'Tajawal', sans-serif !important;
+}
+
+.single-product .comment-form input[type="text"]:focus,
+.single-product .comment-form input[type="email"]:focus,
+.single-product .comment-form textarea:focus {
+    border-color: var(--bollu-gold) !important;
+    outline: none !important;
 }
 
 .single-product .comment-form input[type="submit"] {
@@ -2536,11 +2630,86 @@ body.bollu-search-open {
     text-transform: uppercase !important;
     border-radius: 2px !important;
     cursor: pointer !important;
-    transition: background-color 0.3s ease !important;
+    transition: background-color 0.3s ease, transform 0.3s ease !important;
 }
 
 .single-product .comment-form input[type="submit"]:hover {
     background-color: var(--bollu-gold-hover) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Related Products Heading - Fixed white-on-white headings */
+.single-product .related.products h2,
+.single-product .up-sells.products h2 {
+    color: var(--bollu-black) !important;
+    text-align: center !important;
+    font-family: 'Outfit', 'Tajawal', sans-serif !important;
+    font-size: 22px !important;
+    margin-top: 50px !important;
+    margin-bottom: 40px !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+}
+
+.single-product .related.products h2::after,
+.single-product .up-sells.products h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background-color: var(--bollu-gold) !important;
+    margin: 15px auto 0 auto;
+}
+
+/* WooCommerce General Notices (Luxury Bollu Style) */
+.woocommerce-message,
+.woocommerce-info,
+.woocommerce-error,
+.woocommerce-notice {
+    background-color: #ffffff !important;
+    border: 1px solid #e5e5e5 !important;
+    border-top: 3px solid var(--bollu-gold) !important;
+    color: var(--bollu-black) !important;
+    font-family: 'Inter', 'Tajawal', sans-serif !important;
+    font-size: 14px !important;
+    padding: 20px 25px !important;
+    margin-bottom: 30px !important;
+    border-radius: 2px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    flex-wrap: wrap !important;
+    gap: 15px !important;
+}
+
+.woocommerce-error {
+    border-top-color: #d9534f !important; /* Red color for error/warning notices */
+}
+
+.woocommerce-message a.button,
+.woocommerce-info a.button,
+.woocommerce-error a.button {
+    background-color: var(--bollu-black) !important;
+    color: var(--bollu-white) !important;
+    padding: 8px 20px !important;
+    font-family: 'Outfit', 'Tajawal', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    border-radius: 2px !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    float: none !important;
+    margin: 0 !important;
+}
+
+.woocommerce-message a.button:hover,
+.woocommerce-info a.button:hover,
+.woocommerce-error a.button:hover {
+    background-color: var(--bollu-gold) !important;
+    color: var(--bollu-black) !important;
 }
 
 /* ==========================================================================
