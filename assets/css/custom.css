@@ -246,11 +246,15 @@ body .main-header-menu a:hover {
     margin: 0 auto;
 }
 
-.category-card {
+.category-card,
+.product-category {
+    display: block;
     position: relative;
     overflow: hidden;
     background-color: var(--bollu-dark);
     border: 1px solid var(--bollu-border);
+    cursor: pointer;
+    text-decoration: none !important;
 }
 
 .category-card.card-rect {

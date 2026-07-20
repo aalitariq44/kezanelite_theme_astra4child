@@ -18,13 +18,13 @@
             foreach ( $categories as $cat ) :
                 $card_class = ( $index < 2 ) ? 'category-card card-rect' : 'category-card card-square';
                 ?>
-                <div class="<?php echo esc_attr( $card_class ); ?>">
+                <a href="<?php echo esc_url( $cat['url'] ); ?>" class="<?php echo esc_attr( $card_class ); ?>">
                     <div class="category-card-image" style="background-image: url('<?php echo esc_url( $cat['image'] ); ?>');"></div>
                     <div class="category-card-content">
                         <h3 class="category-card-title"><?php echo esc_html( $cat['name'] ); ?></h3>
-                        <a href="<?php echo esc_url( $cat['url'] ); ?>" class="category-card-link">تصفح المعرض</a>
+                        <span class="category-card-link">تصفح المعرض</span>
                     </div>
-                </div>
+                </a>
                 <?php
                 $index++;
             endforeach;

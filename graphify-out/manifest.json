@@ -1,7 +1,7 @@
 {
   "assets/js/custom.js": {
-    "mtime": 1784535721.0867634,
-    "ast_hash": "f13f5bbdc2c2b152c1aed948ec0d1b62",
+    "mtime": 1784536016.9171596,
+    "ast_hash": "bf861cf894b90e567ce235f4c95a5447",
     "semantic_hash": ""
   },
   "footer.php": {
@@ -55,8 +55,8 @@
     "semantic_hash": ""
   },
   "template-parts/home/categories.php": {
-    "mtime": 1783869931.202875,
-    "ast_hash": "1cb05b6d3c794007b01cbf9ded0ad9f5",
+    "mtime": 1784536006.1227293,
+    "ast_hash": "536fc535d7ae07e123ddac2bc6a4c729",
     "semantic_hash": ""
   },
   "template-parts/home/hero.php": {
