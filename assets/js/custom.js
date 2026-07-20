@@ -178,6 +178,59 @@
             }
         });
 
+        // ===== Custom WooCommerce Quantity Buttons (Luxury Style) =====
+        function initQuantityButtons() {
+            $('.quantity').each(function() {
+                var $qtyContainer = $(this);
+                // Avoid duplicating buttons
+                if ($qtyContainer.find('.minus').length || $qtyContainer.find('.plus').length) {
+                    return;
+                }
+
+                var $qtyInput = $qtyContainer.find('input.qty');
+                if (!$qtyInput.length) {
+                    return;
+                }
+
+                // Create buttons
+                var $minusBtn = $('<button type="button" class="minus">-</button>');
+                var $plusBtn = $('<button type="button" class="plus">+</button>');
+
+                // Prepend and Append
+                $qtyInput.before($minusBtn);
+                $qtyInput.after($plusBtn);
+
+                // Click events
+                $minusBtn.on('click', function() {
+                    var val = parseFloat($qtyInput.val()) || 0;
+                    var step = parseFloat($qtyInput.attr('step')) || 1;
+                    var min = parseFloat($qtyInput.attr('min'));
+                    if (isNaN(min)) {
+                        min = 1;
+                    }
+                    if (val > min) {
+                        $qtyInput.val(val - step).trigger('change');
+                    }
+                });
+
+                $plusBtn.on('click', function() {
+                    var val = parseFloat($qtyInput.val()) || 0;
+                    var step = parseFloat($qtyInput.attr('step')) || 1;
+                    var max = parseFloat($qtyInput.attr('max'));
+                    if (!isNaN(max) && val >= max) {
+                        return;
+                    }
+                    $qtyInput.val(val + step).trigger('change');
+                });
+            });
+        }
+
+        initQuantityButtons();
+        // Re-run on WooCommerce Ajax events (like cart updates)
+        $(document.body).on('updated_cart_totals updated_wc_div', function() {
+            initQuantityButtons();
+        });
+
         // Run check on load and scroll
         $(window).on('scroll resize', checkScroll);
         setTimeout(checkScroll, 100);

@@ -2354,8 +2354,9 @@ body.bollu-search-open {
     font-size: 13px !important;
 }
 
-/* Quantity container layout - Styles entire box to merge input and plus/minus buttons */
-.single-product div.product .quantity {
+/* WooCommerce Quantity container layout - Styles entire box to merge input and plus/minus buttons */
+.woocommerce .quantity,
+.woocommerce-page .quantity {
     display: inline-flex !important;
     align-items: center !important;
     background-color: var(--bollu-dark) !important; /* Black background for the entire quantity block */
@@ -2369,7 +2370,8 @@ body.bollu-search-open {
 }
 
 /* Quantity input inside the container */
-.single-product div.product .quantity input.qty {
+.woocommerce .quantity input.qty,
+.woocommerce-page .quantity input.qty {
     background-color: transparent !important;
     border: none !important;
     color: var(--bollu-white) !important;
@@ -2381,15 +2383,31 @@ body.bollu-search-open {
     padding: 0 !important;
     text-align: center !important;
     margin: 0 !important;
+    -moz-appearance: textfield !important; /* Hide default spinner in Firefox */
+}
+
+/* Hide default browser spinner arrows inside quantity inputs (Chrome, Safari, Edge, Opera) */
+.woocommerce .quantity input.qty::-webkit-outer-spin-button,
+.woocommerce .quantity input.qty::-webkit-inner-spin-button,
+.woocommerce-page .quantity input.qty::-webkit-outer-spin-button,
+.woocommerce-page .quantity input.qty::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
 }
 
 /* Quantity plus/minus buttons (Astra/WooCommerce custom quantity hooks) */
-.single-product div.product .quantity .minus,
-.single-product div.product .quantity .plus,
-.single-product div.product .quantity input[type="button"].minus,
-.single-product div.product .quantity input[type="button"].plus,
-.single-product div.product .quantity button.minus,
-.single-product div.product .quantity button.plus {
+.woocommerce .quantity .minus,
+.woocommerce .quantity .plus,
+.woocommerce-page .quantity .minus,
+.woocommerce-page .quantity .plus,
+.woocommerce .quantity input[type="button"].minus,
+.woocommerce .quantity input[type="button"].plus,
+.woocommerce-page .quantity input[type="button"].minus,
+.woocommerce-page .quantity input[type="button"].plus,
+.woocommerce .quantity button.minus,
+.woocommerce .quantity button.plus,
+.woocommerce-page .quantity button.minus,
+.woocommerce-page .quantity button.plus {
     background-color: transparent !important;
     border: none !important;
     color: var(--bollu-white) !important;
@@ -2408,12 +2426,18 @@ body.bollu-search-open {
     text-decoration: none !important;
 }
 
-.single-product div.product .quantity .minus:hover,
-.single-product div.product .quantity .plus:hover,
-.single-product div.product .quantity input[type="button"].minus:hover,
-.single-product div.product .quantity input[type="button"].plus:hover,
-.single-product div.product .quantity button.minus:hover,
-.single-product div.product .quantity button.plus:hover {
+.woocommerce .quantity .minus:hover,
+.woocommerce .quantity .plus:hover,
+.woocommerce-page .quantity .minus:hover,
+.woocommerce-page .quantity .plus:hover,
+.woocommerce .quantity input[type="button"].minus:hover,
+.woocommerce .quantity input[type="button"].plus:hover,
+.woocommerce-page .quantity input[type="button"].minus:hover,
+.woocommerce-page .quantity input[type="button"].plus:hover,
+.woocommerce .quantity button.minus:hover,
+.woocommerce .quantity button.plus:hover,
+.woocommerce-page .quantity button.minus:hover,
+.woocommerce-page .quantity button.plus:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
     color: var(--bollu-gold) !important;
 }

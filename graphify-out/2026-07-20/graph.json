@@ -44,16 +44,6 @@
       "norm_label": "closesearchoverlay()"
     },
     {
-      "label": "initQuantityButtons()",
-      "file_type": "code",
-      "source_file": "assets/js/custom.js",
-      "source_location": "L182",
-      "_origin": "ast",
-      "id": "assets_js_custom_initquantitybuttons",
-      "community": 0,
-      "norm_label": "initquantitybuttons()"
-    },
-    {
       "label": "footer.php",
       "file_type": "code",
       "source_file": "footer.php",
@@ -418,16 +408,6 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "assets/js/custom.js",
-      "source_location": "L182",
-      "weight": 1.0,
-      "source": "assets_js_custom",
-      "target": "assets_js_custom_initquantitybuttons",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
       "source_file": "inc/footer-functions.php",
       "source_location": "L16",
       "weight": 1.0,
@@ -587,5 +567,5 @@
     }
   ],
   "hyperedges": [],
-  "built_at_commit": "7aece076240dfec7fae6e5f032c8a0d0561097fa"
+  "built_at_commit": "b81776f919dedfe287129eb53a73f466ce9ce673"
 }
