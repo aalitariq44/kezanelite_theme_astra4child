@@ -1614,6 +1614,11 @@ body.bollu-search-open {
     margin-right: 12px;
 }
 
+body.rtl .bollu-search-icon {
+    margin-right: 0 !important;
+    margin-left: 12px !important;
+}
+
 .bollu-search-input {
     border: none !important;
     outline: none !important;
