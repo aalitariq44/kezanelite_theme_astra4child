@@ -2292,6 +2292,7 @@ body.bollu-search-open {
 .single-product div.product .price {
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
     font-size: 24px !important;
+    font-weight: 500 !important; /* Fixed: set explicit sharp weight */
     color: var(--bollu-gold) !important;
     margin-bottom: 30px !important;
     display: inline-flex !important; /* Prevent block full-width expansion */
@@ -2305,6 +2306,7 @@ body.bollu-search-open {
 .single-product div.product .price * {
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
     font-size: 24px !important;
+    font-weight: 500 !important; /* Fixed: set explicit sharp weight */
     color: var(--bollu-gold) !important;
     display: inline !important; /* Force inline display to keep currency symbol adjacent to number */
 }
@@ -2316,6 +2318,7 @@ body.bollu-search-open {
     color: var(--bollu-gray) !important;
     text-decoration: line-through !important;
     font-size: 18px !important;
+    font-weight: 400 !important; /* Sharp normal weight */
 }
 
 .single-product div.product p.price ins,
@@ -2324,7 +2327,7 @@ body.bollu-search-open {
 .single-product div.product .price ins * {
     color: var(--bollu-gold) !important;
     text-decoration: none !important;
-    font-weight: 500 !important;
+    font-weight: 500 !important; /* Sharp medium weight */
 }
 
 /* Product summary texts (description, attributes, labels) - Fixed white-on-white text issues */
@@ -2511,7 +2514,7 @@ body.single-product .ast-breadcrumbs a:hover {
 body.single-product div.product .summary a:not(.button) {
     color: var(--bollu-gold) !important;
     text-decoration: none !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important; /* Fixed: set explicit sharp weight 500 to avoid synthetic bolding */
     transition: color 0.3s ease !important;
 }
 
@@ -2546,7 +2549,7 @@ body.single-product div.product .ast-woo-product-category a,
 body.single-product div.product .ast-single-product-category a {
     color: var(--bollu-gold) !important;
     text-decoration: none !important;
-    font-weight: 600 !important;
+    font-weight: 500 !important; /* Fixed: set explicit sharp weight 500 to avoid synthetic bolding */
     transition: color 0.3s ease !important;
 }
 
