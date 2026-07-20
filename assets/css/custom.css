@@ -2762,7 +2762,7 @@ body.single-product div.product .ast-single-product-category a:hover {
     margin: 15px auto 0 auto;
 }
 
-/* WooCommerce General Notices (Luxury Bollu Style) */
+/* WooCommerce General Notices (Luxury Bollu Style) - Fixed: added specific padding for LTR/RTL icon spacing */
 .woocommerce-message,
 .woocommerce-info,
 .woocommerce-error,
@@ -2773,7 +2773,7 @@ body.single-product div.product .ast-single-product-category a:hover {
     color: var(--bollu-black) !important;
     font-family: 'Inter', 'Tajawal', sans-serif !important;
     font-size: 14px !important;
-    padding: 20px 25px !important;
+    padding: 20px 25px 20px 3.5em !important; /* LTR: default spacing on the left for the absolute icon */
     margin-bottom: 30px !important;
     border-radius: 2px !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03) !important;
@@ -2782,10 +2782,44 @@ body.single-product div.product .ast-single-product-category a:hover {
     justify-content: space-between !important;
     flex-wrap: wrap !important;
     gap: 15px !important;
+    position: relative !important;
+}
+
+/* RTL override: make space on the right for the absolute icon */
+body.rtl .woocommerce-message,
+body.rtl .woocommerce-info,
+body.rtl .woocommerce-error,
+body.rtl .woocommerce-notice {
+    padding: 20px 3.5em 20px 25px !important;
+}
+
+/* Style default WooCommerce / Astra pseudo-element icons to be Gold */
+.woocommerce-message::before,
+.woocommerce-info::before,
+.woocommerce-error::before,
+.woocommerce-notice::before {
+    color: var(--bollu-gold) !important;
+}
+
+/* Style default WooCommerce / Astra SVG icons to be Gold */
+.woocommerce-message svg,
+.woocommerce-info svg,
+.woocommerce-error svg,
+.woocommerce-notice svg,
+.woocommerce-message svg *,
+.woocommerce-info svg *,
+.woocommerce-error svg *,
+.woocommerce-notice svg * {
+    fill: var(--bollu-gold) !important;
+    stroke: var(--bollu-gold) !important;
 }
 
 .woocommerce-error {
     border-top-color: #d9534f !important; /* Red color for error/warning notices */
+}
+
+.woocommerce-error::before {
+    color: #d9534f !important; /* Keep red color for error icon */
 }
 
 .woocommerce-message a.button,
