@@ -2096,6 +2096,16 @@ body.bollu-search-open {
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
 }
 
+/* Ensure consistent vertical spacing between WooCommerce Block form fields on Checkout/Cart */
+.wc-block-components-text-input,
+.wc-block-components-combobox,
+.wc-block-components-textarea,
+.wc-block-components-select,
+.wc-block-components-address-form .wc-block-components-text-input,
+.wc-block-components-address-form .wc-block-components-combobox {
+    margin-bottom: 20px !important;
+}
+
 /* Classic Cart Table styling */
 .woocommerce-cart table.shop_table {
     background-color: #ffffff !important;
