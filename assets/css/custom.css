@@ -2354,20 +2354,68 @@ body.bollu-search-open {
     font-size: 13px !important;
 }
 
-/* Add to cart quantity input */
-.single-product div.product .quantity input.qty {
-    background-color: var(--bollu-dark) !important;
+/* Quantity container layout - Styles entire box to merge input and plus/minus buttons */
+.single-product div.product .quantity {
+    display: inline-flex !important;
+    align-items: center !important;
+    background-color: var(--bollu-dark) !important; /* Black background for the entire quantity block */
     border: 1px solid var(--bollu-border) !important;
-    color: var(--bollu-white) !important;
     border-radius: 2px !important;
     height: 48px !important;
+    overflow: hidden !important;
+    margin-left: 10px !important; /* Spacing for LTR */
+    margin-right: 10px !important; /* Spacing for RTL */
+    padding: 0 !important;
+}
+
+/* Quantity input inside the container */
+.single-product div.product .quantity input.qty {
+    background-color: transparent !important;
+    border: none !important;
+    color: var(--bollu-white) !important;
+    height: 100% !important;
+    width: 40px !important;
     font-family: 'Outfit', 'Tajawal', sans-serif !important;
     font-size: 15px !important;
     font-weight: 500 !important;
-    padding: 0 10px !important;
+    padding: 0 !important;
     text-align: center !important;
-    margin-left: 10px !important; /* Spacing for LTR */
-    margin-right: 10px !important; /* Spacing for RTL */
+    margin: 0 !important;
+}
+
+/* Quantity plus/minus buttons (Astra/WooCommerce custom quantity hooks) */
+.single-product div.product .quantity .minus,
+.single-product div.product .quantity .plus,
+.single-product div.product .quantity input[type="button"].minus,
+.single-product div.product .quantity input[type="button"].plus,
+.single-product div.product .quantity button.minus,
+.single-product div.product .quantity button.plus {
+    background-color: transparent !important;
+    border: none !important;
+    color: var(--bollu-white) !important;
+    width: 35px !important;
+    height: 100% !important;
+    font-size: 18px !important;
+    line-height: 48px !important;
+    font-weight: 400 !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, color 0.3s ease !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-decoration: none !important;
+}
+
+.single-product div.product .quantity .minus:hover,
+.single-product div.product .quantity .plus:hover,
+.single-product div.product .quantity input[type="button"].minus:hover,
+.single-product div.product .quantity input[type="button"].plus:hover,
+.single-product div.product .quantity button.minus:hover,
+.single-product div.product .quantity button.plus:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: var(--bollu-gold) !important;
 }
 
 /* Add to cart button */
@@ -2426,13 +2474,27 @@ body.single-product .ast-breadcrumbs a:hover {
     color: var(--bollu-gold) !important;
 }
 
+/* General summary links (except buttons) - Fixed: force gold luxury color to eliminate default Astra blue links */
+body.single-product div.product .summary a:not(.button) {
+    color: var(--bollu-gold) !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    transition: color 0.3s ease !important;
+}
+
+body.single-product div.product .summary a:not(.button):hover {
+    color: var(--bollu-gold-hover) !important;
+}
+
 /* Category links in product summary - Fixed primitive Astra theme blue link design */
 body.single-product #content .summary .posted_in,
 body.single-product #content .summary .product_meta,
 body.single-product #content .summary .ast-product-single-categories,
 body.single-product #content .summary .ast-woo-product-category,
 body.single-product #content .summary .posted_in span,
-body.single-product #content .summary .posted_in strong {
+body.single-product #content .summary .posted_in strong,
+body.single-product #content .summary .ast-woo-product-category,
+body.single-product #content .summary .ast-single-product-category {
     font-size: 11px !important;
     text-transform: uppercase !important;
     letter-spacing: 0.15em !important;
@@ -2445,7 +2507,10 @@ body.single-product #content .summary .posted_in strong {
 body.single-product #content .summary .posted_in a,
 body.single-product #content .summary .product_meta a,
 body.single-product #content .summary .ast-product-single-categories a,
-body.single-product #content .summary .ast-woo-product-category a {
+body.single-product #content .summary .ast-woo-product-category a,
+body.single-product div.product a.ast-woo-product-category,
+body.single-product div.product .ast-woo-product-category a,
+body.single-product div.product .ast-single-product-category a {
     color: var(--bollu-gold) !important;
     text-decoration: none !important;
     font-weight: 600 !important;
@@ -2455,7 +2520,10 @@ body.single-product #content .summary .ast-woo-product-category a {
 body.single-product #content .summary .posted_in a:hover,
 body.single-product #content .summary .product_meta a:hover,
 body.single-product #content .summary .ast-product-single-categories a:hover,
-body.single-product #content .summary .ast-woo-product-category a:hover {
+body.single-product #content .summary .ast-woo-product-category a:hover,
+body.single-product div.product a.ast-woo-product-category:hover,
+body.single-product div.product .ast-woo-product-category a:hover,
+body.single-product div.product .ast-single-product-category a:hover {
     color: var(--bollu-gold-hover) !important;
 }
 
